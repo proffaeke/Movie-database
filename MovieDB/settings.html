@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Settings | MovieDB</title>
+
+    <link href="/src/output.css" rel="stylesheet" />
+  </head>
+
+  <body class="bg-slate-100 min-h-screen">
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="fixed left-0 top-0 w-50 h-screen bg-blue-950 text-white z-50">
+      <!-- Logo -->
+
+      <div class="px-4 pt-4">
+        <h1 class="text-3xl font-bold">MovieDB</h1>
+      </div>
+
+      <!-- Navigation -->
+
+      <nav class="mt-10 px-2 space-y-3">
+        <a
+          href="dashboard.html"
+          class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+        >
+          Dashboard
+        </a>
+
+        <a
+          href="movies.html"
+          class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+        >
+          Movies
+        </a>
+
+        <a
+          href="favorites.html"
+          class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+        >
+          Favorites
+        </a>
+
+        <!-- ACTIVE SETTINGS -->
+
+        <a
+          href="settings.html"
+          class="block p-3 rounded-lg bg-white text-blue-950 font-semibold"
+        >
+          Settings
+        </a>
+      </nav>
+
+      <!-- Sign Out -->
+
+      <button
+        id="logoutBtn"
+        class="absolute bottom-8 left-2 right-2 text-left p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+      >
+        Sign Out
+      </button>
+    </aside>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav
+      class="fixed top-0 left-50 right-0 h-16 bg-blue-950 text-white shadow-lg z-40 flex items-center justify-between px-6"
+    >
+      <!-- Search -->
+
+      <div
+        class="flex items-center bg-blue-900 rounded-full px-4 py-2 w-80 border border-blue-700"
+      >
+        <span class="mr-2">🔍</span>
+
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search movies..."
+          class="bg-transparent outline-none text-white placeholder-blue-300 w-full text-sm"
+        />
+      </div>
+
+      <!-- User -->
+
+      <div class="flex items-center gap-3">
+        <span id="usernameDisplay" class="text-blue-100 font-semibold">
+          User
+        </span>
+
+        <div
+          id="userAvatar"
+          class="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center font-bold text-white"
+        >
+          U
+        </div>
+      </div>
+    </nav>
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="ml-50 pt-24 px-8 pb-10">
+      <!-- Page Header -->
+
+      <div class="mb-8">
+        <h1 class="text-4xl font-bold text-slate-800">Settings</h1>
+
+        <p class="text-slate-500 mt-2">
+          Manage your MovieDB account and preferences.
+        </p>
+      </div>
+
+      <!-- ================= PROFILE ================= -->
+
+      <section class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold text-slate-800">Profile</h2>
+
+          <p class="text-slate-500 text-sm mt-1">Your account information.</p>
+        </div>
+
+        <!-- Profile -->
+
+        <div class="flex items-center gap-5 mb-8">
+          <div
+            id="profileAvatar"
+            class="w-20 h-20 rounded-full bg-blue-900 text-white flex items-center justify-center text-3xl font-bold"
+          >
+            U
+          </div>
+
+          <div>
+            <h3 id="profileUsername" class="text-2xl font-bold text-slate-800">
+              User
+            </h3>
+
+            <p id="profileEmail" class="text-slate-500">user@example.com</p>
+          </div>
+        </div>
+
+        <!-- Username -->
+
+        <div class="mb-5">
+          <label class="block mb-2 font-semibold text-slate-700">
+            Username
+          </label>
+
+          <input
+            id="settingsUsername"
+            type="text"
+            class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-900"
+          />
+        </div>
+
+        <!-- Email -->
+
+        <div class="mb-5">
+          <label class="block mb-2 font-semibold text-slate-700"> Email </label>
+
+          <input
+            id="settingsEmail"
+            type="email"
+            class="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-100"
+            readonly
+          />
+        </div>
+
+        <button
+          id="saveProfileBtn"
+          class="bg-blue-900 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-800 transition"
+        >
+          Save Changes
+        </button>
+
+        <p id="profileMessage" class="text-sm mt-4"></p>
+      </section>
+
+      <!-- ================= PASSWORD ================= -->
+
+      <section class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold text-slate-800">Change Password</h2>
+
+          <p class="text-slate-500 text-sm mt-1">
+            Update your account password.
+          </p>
+        </div>
+
+        <div class="mb-5">
+          <label class="block mb-2 font-semibold text-slate-700">
+            Current Password
+          </label>
+
+          <input
+            id="currentPassword"
+            type="password"
+            placeholder="Enter current password"
+            class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-900"
+          />
+        </div>
+
+        <div class="mb-5">
+          <label class="block mb-2 font-semibold text-slate-700">
+            New Password
+          </label>
+
+          <input
+            id="newPassword"
+            type="password"
+            placeholder="Enter new password"
+            class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-900"
+          />
+        </div>
+
+        <div class="mb-5">
+          <label class="block mb-2 font-semibold text-slate-700">
+            Confirm New Password
+          </label>
+
+          <input
+            id="confirmNewPassword"
+            type="password"
+            placeholder="Confirm new password"
+            class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-900"
+          />
+        </div>
+
+        <button
+          id="changePasswordBtn"
+          class="bg-blue-900 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-800 transition"
+        >
+          Change Password
+        </button>
+
+        <p id="passwordMessage" class="text-sm mt-4"></p>
+      </section>
+
+      <!-- ================= ACCOUNT ACTIONS ================= -->
+
+      <section class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-2xl font-bold text-slate-800 mb-2">Account Actions</h2>
+
+        <p class="text-slate-500 mb-6">Manage your MovieDB session.</p>
+
+        <button
+          id="settingsLogoutBtn"
+          class="bg-red-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-red-600 transition"
+        >
+          Sign Out
+        </button>
+      </section>
+    </main>
+
+    <!-- Logout Confirmation Modal -->
+
+    <div
+      id="logoutModal"
+      class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-100"
+    >
+      <div class="bg-white rounded-3xl p-8 w-100 shadow-2xl">
+        <h2 class="text-3xl font-bold text-slate-800 mb-3">Sign Out</h2>
+
+        <p class="text-slate-600 mb-8">
+          Are you sure you want to sign out of your account?
+        </p>
+
+        <div class="flex justify-end gap-4">
+          <button
+            id="cancelLogout"
+            class="px-6 py-3 rounded-xl bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold cursor-pointer transition"
+          >
+            Cancel
+          </button>
+
+          <button
+            id="confirmLogout"
+            class="px-6 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold cursor-pointer transition"
+          >
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/Script/settings.js"></script>
+  </body>
+</html>

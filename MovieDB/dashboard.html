@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Dashboard</title>
+    <link href="/src/output.css" rel="stylesheet" />
+  </head>
+
+  <body class="bg-slate-100 overflow-x-hidden">
+    <nav
+      class="fixed top-0 left-50 right-0 h-16 bg-blue-950 text-white shadow-lg z-50 flex items-center justify-end px-6"
+    >
+      <!-- Profile -->
+
+      <div class="flex items-center gap-3">
+        <!-- Username -->
+        <span id="usernameDisplay" class="text-blue-100 font-semibold">
+          User
+        </span>
+
+        <!-- User Avatar -->
+        <div
+          id="userAvatar"
+          class="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center font-bold text-white"
+        >
+          U
+        </div>
+      </div>
+    </nav>
+
+    <div class="min-h-screen flex">
+      <!-- Sidebar -->
+      <aside
+        class="fixed left-0 top-0 w-50 h-screen bg-blue-950 text-white z-50"
+      >
+        <!-- Logo -->
+
+        <div class="px-4 pt-4">
+          <h1 class="text-3xl font-bold">MovieDB</h1>
+        </div>
+
+        <!-- Navigation -->
+
+        <nav class="mt-10 px-2 space-y-3">
+          <a
+            href="dashboard.html"
+            class="block p-3 rounded-lg bg-white text-blue-950 transition"
+          >
+            Dashboard
+          </a>
+
+          <!-- Active -->
+
+          <a
+            href="movies.html"
+            class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 font-semibold"
+          >
+            Movies
+          </a>
+
+          <a
+            href="favorites.html"
+            class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+          >
+            Favorites
+          </a>
+
+          <a
+            href="settings.html"
+            class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+          >
+            Settings
+          </a>
+        </nav>
+
+        <!-- Logout -->
+
+        <button
+          id="logoutBtn"
+          class="absolute bottom-8 left-2 right-2 text-left p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+        >
+          Sign Out
+        </button>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="ml-50 pt-20 px-8 pb-8 w-full min-h-screen bg-slate-100">
+        <!-- Welcome -->
+        <div class="mb-8">
+          <h1 class="text-4xl font-bold text-slate-800">
+            Welcome Back,
+            <span id="welcomeUser" class="text-blue-900"></span>
+          </h1>
+
+          <p class="text-slate-500 mt-2">
+            Here's an overview of your Movie Database.
+          </p>
+        </div>
+
+        <!-- Dashboard Cards -->
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <!-- Total Movies -->
+
+          <div class="bg-white rounded-2xl shadow-lg p-6">
+            <p class="text-slate-500">Total Movies</p>
+
+            <h2 id="totalMovies" class="text-4xl font-bold mt-4 text-blue-900">
+              0
+            </h2>
+          </div>
+
+          <!-- Favorites -->
+
+          <div class="bg-white rounded-2xl shadow-lg p-6">
+            <p class="text-slate-500">Favorites</p>
+
+            <h2
+              id="favoriteMovies"
+              class="text-4xl font-bold mt-4 text-red-500"
+            >
+              0
+            </h2>
+          </div>
+
+          <!-- Genres -->
+
+          <div class="bg-white rounded-2xl shadow-lg p-6">
+            <p class="text-slate-500">Genres</p>
+
+            <h2 id="totalGenres" class="text-4xl font-bold mt-4 text-green-600">
+              0
+            </h2>
+          </div>
+
+          <!-- Latest Movie -->
+
+          <!-- Latest Movie -->
+
+          <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div class="relative h-44">
+              <img
+                id="latestMoviePoster"
+                src="/image/default-movie.webp"
+                alt="Latest Movie Poster"
+                class="w-full h-full object-cover"
+              />
+
+              <!-- Dark overlay -->
+
+              <div
+                class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"
+              ></div>
+
+              <!-- Movie information -->
+
+              <div class="absolute bottom-0 left-0 p-4 text-white">
+                <p class="text-xs text-gray-300">Latest Movie</p>
+
+                <h2 id="latestMovie" class="text-xl font-bold mt-1">None</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Dashboard Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-6 mt-10">
+          <!-- Movie Poster Card 1 -->
+          <div
+            class="lg:col-span-3 bg-white rounded-2xl shadow-lg overflow-hidden"
+          >
+            <div class="relative h-80">
+              <img
+                src="/image/the-lion-king.webp"
+                alt="Movie Poster"
+                class="w-full h-full object-cover"
+              />
+
+              <!-- Overlay -->
+              <div
+                class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex items-end"
+              >
+                <div class="p-6 text-white">
+                  <p class="text-sm text-gray-300">Recently Added</p>
+
+                  <h2 class="text-2xl font-bold">The Lion King</h2>
+
+                  <p class="text-sm mt-1">Animation • 2019</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Movie Poster Card 2 -->
+          <div
+            class="lg:col-span-3 bg-white rounded-2xl shadow-lg overflow-hidden"
+          >
+            <div class="relative h-80">
+              <img
+                src="/image/Avengers.webp"
+                alt="Movie Poster"
+                class="w-full h-full object-cover"
+              />
+
+              <!-- Overlay -->
+              <div
+                class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex items-end"
+              >
+                <div class="p-6 text-white">
+                  <p class="text-sm text-gray-300">Recently Added</p>
+
+                  <h2 class="text-2xl font-bold">Avengers: Endgame</h2>
+
+                  <p class="text-sm mt-1">Action • 2019</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions Card -->
+          <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-5">
+            <h2 class="text-xl font-bold text-slate-800 mb-6">Quick Actions</h2>
+
+            <div class="space-y-4">
+              <a
+                href="movies.html"
+                class="flex items-center gap-2 w-full bg-blue-900 text-white px-4 py-3 rounded-xl hover:bg-blue-800 transition"
+              >
+                <span>Movies</span>
+              </a>
+
+              <a
+                href="favorites.html"
+                class="flex items-center gap-2 w-full bg-red-500 text-white px-4 py-3 rounded-xl hover:bg-red-600 transition"
+              >
+                <span>Favorites</span>
+              </a>
+
+              <a
+                href="settings.html"
+                class="flex items-center gap-2 w-full bg-slate-700 text-white px-4 py-3 rounded-xl hover:bg-slate-800 transition"
+              >
+                <span>Settings</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- Logout Confirmation Modal -->
+
+    <div
+      id="logoutModal"
+      class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-100"
+    >
+      <div class="bg-white rounded-3xl p-8 w-100 shadow-2xl">
+        <h2 class="text-3xl font-bold text-slate-800 mb-3">Sign Out</h2>
+
+        <p class="text-slate-600 mb-8">
+          Are you sure you want to sign out of your account?
+        </p>
+
+        <div class="flex justify-end gap-4">
+          <button
+            id="cancelLogout"
+            class="px-6 py-3 rounded-xl bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold cursor-pointer transition"
+          >
+            Cancel
+          </button>
+
+          <button
+            id="confirmLogout"
+            class="px-6 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold cursor-pointer transition"
+          >
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/Script/dashboard.js"></script>
+  </body>
+</html>
