@@ -3,16 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Movies | MovieDB</title>
-
     <link href="/src/output.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
   </head>
-
   <body class="bg-slate-100 min-h-screen">
     <!-- ================= NAVBAR ================= -->
 
@@ -21,12 +18,12 @@
     >
       <!-- Profile -->
 
-      <buuton
+      <button
         id="menuBtn"
         class="md:hidden absolute left-4 text-white text-2xl"
       >
         <i class="fa-solid fa-bars"></i>
-      </buuton>
+      </button>
 
       <div class="flex items-center gap-3">
         <!-- Username -->
@@ -191,7 +188,7 @@
       id="movieModal"
       class="hidden fixed inset-0 bg-black/60 z-100 flex items-center justify-center p-5"
     >
-      <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg p-8">
+      <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md p-6">
         <div class="flex items-center justify-between mb-6">
           <h2 id="modalTitle" class="text-2xl font-bold text-slate-800">
             Add Movie
@@ -282,7 +279,7 @@
       id="deleteModal"
       class="hidden fixed inset-0 bg-black/60 z-110 flex items-center justify-center p-5"
     >
-      <div class="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl">
+      <div class="bg-white rounded-3xl p-6 w-full max-w-md shadow-2xl">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">Delete Movie</h2>
 
         <p class="text-slate-500 mb-8">
@@ -313,7 +310,7 @@
       id="logoutModal"
       class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-100"
     >
-      <div class="bg-white rounded-3xl p-8 w-100 shadow-2xl">
+      <div class="bg-white rounded-3xl p-6 w-90 max-w-md shadow-2xl">
         <h2 class="text-3xl font-bold text-slate-800 mb-3">Sign Out</h2>
 
         <p class="text-slate-600 mb-8">

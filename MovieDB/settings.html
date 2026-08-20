@@ -2,18 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Settings | MovieDB</title>
-
     <link href="/src/output.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
   </head>
-
   <body class="bg-slate-100 min-h-screen">
     <!-- ================= SIDEBAR ================= -->
 
-    <aside class="fixed left-0 top-0 w-50 h-screen bg-blue-950 text-white z-50">
+    <aside
+      id="sidebar"
+      class="fixed left-0 top-0 w-50 h-screen bg-blue-950 text-white z-50 -translate-x-full md:translate-x-0 md:transition-transform duration-300"
+    >
       <!-- Logo -->
 
       <div class="px-4 pt-4">
@@ -63,28 +66,23 @@
         Sign Out
       </button>
     </aside>
+    <div
+      id="sidebarOverlay"
+      class="hidden fixed inset-0 bg-black/50 z-40 md:hidden"
+    ></div>
 
     <!-- ================= NAVBAR ================= -->
 
     <nav
-      class="fixed top-0 left-50 right-0 h-16 bg-blue-950 text-white shadow-lg z-40 flex items-center justify-between px-6"
+      class="fixed top-0 left-0 md:left-50 right-0 h-16 bg-blue-950 text-white shadow-lg z-40 flex items-center justify-end px-6"
     >
-      <!-- Search -->
-
-      <div
-        class="flex items-center bg-blue-900 rounded-full px-4 py-2 w-80 border border-blue-700"
-      >
-        <span class="mr-2">🔍</span>
-
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="Search movies..."
-          class="bg-transparent outline-none text-white placeholder-blue-300 w-full text-sm"
-        />
-      </div>
-
       <!-- User -->
+      <button
+        id="menuBtn"
+        class="md:hidden absolute left-4 text-white text-2xl"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
 
       <div class="flex items-center gap-3">
         <span id="usernameDisplay" class="text-blue-100 font-semibold">
@@ -102,11 +100,11 @@
 
     <!-- ================= MAIN ================= -->
 
-    <main class="ml-50 pt-24 px-8 pb-10">
+    <main class="ml-0 md:ml-50 pt-24 px-8 pb-10">
       <!-- Page Header -->
 
       <div class="mb-8">
-        <h1 class="text-4xl font-bold text-slate-800">Settings</h1>
+        <h1 class="text-2xl md:text-4xl font-bold text-slate-800">Settings</h1>
 
         <p class="text-slate-500 mt-2">
           Manage your MovieDB account and preferences.
@@ -260,7 +258,7 @@
       id="logoutModal"
       class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-100"
     >
-      <div class="bg-white rounded-3xl p-8 w-100 shadow-2xl">
+      <div class="bg-white rounded-3xl p-8 w-90 max-w-md shadow-2xl">
         <h2 class="text-3xl font-bold text-slate-800 mb-3">Sign Out</h2>
 
         <p class="text-slate-600 mb-8">

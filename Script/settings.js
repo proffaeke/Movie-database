@@ -258,3 +258,21 @@ confirmLogout.addEventListener("click", function () {
 
   window.location.href = "login.html";
 });
+
+// ========================================
+// MOBILE SIDEBAR
+// ========================================
+
+const sidebar = document.getElementById("sidebar");
+const menuBtn = document.getElementById("menuBtn");
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+menuBtn.addEventListener("click", function () {
+  sidebar.classList.toggle("-translate-x-full");
+  sidebarOverlay.classList.toggle("hidden");
+});
+
+sidebarOverlay.addEventListener("click", function () {
+  sidebar.classList.add("-translate-x-full");
+  sidebarOverlay.classList.add("hidden");
+});

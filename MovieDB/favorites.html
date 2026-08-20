@@ -8,12 +8,19 @@
     <title>Favorites | MovieDB</title>
 
     <link href="/src/output.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
   </head>
 
   <body class="bg-slate-100 min-h-screen">
     <!-- ================= SIDEBAR ================= -->
 
-    <aside class="fixed left-0 top-0 w-50 h-screen bg-blue-950 text-white z-50">
+    <aside
+      id="sidebar"
+      class="fixed left-0 top-0 w-50 h-screen bg-blue-950 text-white z-50 -translate-x-full md:translate-x-0 md:transition-transform duration-300"
+    >
       <!-- Logo -->
 
       <div class="px-4 pt-4">
@@ -61,12 +68,22 @@
         Sign Out
       </button>
     </aside>
+    <div
+      id="sidebarOverlay"
+      class="hidden fixed inset-0 bg-black/50 z-40 md:hidden"
+    ></div>
 
     <!-- ================= NAVBAR ================= -->
 
     <nav
-      class="fixed top-0 left-50 right-0 h-16 bg-blue-950 text-white shadow-lg z-40 flex items-center justify-end px-6"
+      class="fixed top-0 left-0 md:left-50 right-0 h-16 bg-blue-950 text-white shadow-lg z-50 flex items-center justify-end px-6"
     >
+      <button
+        id="menuBtn"
+        class="md:hidden absolute left-4 text-white text-2xl"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
       <div class="flex items-center gap-3">
         <!-- Username -->
         <span id="usernameDisplay" class="text-blue-100 font-semibold">
@@ -85,11 +102,13 @@
 
     <!-- ================= MAIN ================= -->
 
-    <main class="ml-50 pt-24 px-8 pb-10">
+    <main class="ml-0 md:ml-50 pt-24 px-8 pb-10">
       <!-- Header -->
 
       <div class="mb-8">
-        <h1 class="text-4xl font-bold text-slate-800">❤️ My Favorites</h1>
+        <h1 class="text-2xl sm:text-4xl font-bold text-slate-800">
+          My Favorites
+        </h1>
 
         <p class="text-slate-500 mt-2">
           Movies you've added to your favorite collection.
@@ -127,8 +146,6 @@
         id="emptyFavorites"
         class="hidden bg-white rounded-2xl shadow-lg p-12 text-center"
       >
-        <div class="text-6xl mb-5">💔</div>
-
         <h2 class="text-2xl font-bold text-slate-800">
           No Favorite Movies Yet
         </h2>
@@ -139,7 +156,7 @@
           href="movies.html"
           class="inline-block mt-6 bg-blue-900 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-800 transition"
         >
-          🎬 Browse Movies
+          Browse Movies
         </a>
       </div>
     </main>
@@ -150,7 +167,7 @@
       id="logoutModal"
       class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-100"
     >
-      <div class="bg-white rounded-3xl p-8 w-100 shadow-2xl">
+      <div class="bg-white rounded-3xl p-8 w-90 max-w-md shadow-2xl">
         <h2 class="text-3xl font-bold text-slate-800 mb-3">Sign Out</h2>
 
         <p class="text-slate-600 mb-8">
