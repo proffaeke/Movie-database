@@ -11,19 +11,13 @@
     />
   </head>
   <body class="bg-slate-100 min-h-screen">
-    <!-- ================= SIDEBAR ================= -->
-
     <aside
       id="sidebar"
       class="fixed left-0 top-0 w-50 h-screen bg-blue-950 text-white z-50 -translate-x-full md:translate-x-0 md:transition-transform duration-300"
     >
-      <!-- Logo -->
-
       <div class="px-4 pt-4">
         <h1 class="text-3xl font-bold">MovieDB</h1>
       </div>
-
-      <!-- Navigation -->
 
       <nav class="mt-10 px-2 space-y-3">
         <a
@@ -47,8 +41,6 @@
           Favorites
         </a>
 
-        <!-- ACTIVE SETTINGS -->
-
         <a
           href="settings.html"
           class="block p-3 rounded-lg bg-white text-blue-950 font-semibold"
@@ -56,8 +48,6 @@
           Settings
         </a>
       </nav>
-
-      <!-- Sign Out -->
 
       <button
         id="logoutBtn"
@@ -70,8 +60,6 @@
       id="sidebarOverlay"
       class="hidden fixed inset-0 bg-black/50 z-40 md:hidden"
     ></div>
-
-    <!-- ================= NAVBAR ================= -->
 
     <nav
       class="fixed top-0 left-0 md:left-50 right-0 h-16 bg-blue-950 text-white shadow-lg z-40 flex items-center justify-end px-6"
@@ -98,11 +86,7 @@
       </div>
     </nav>
 
-    <!-- ================= MAIN ================= -->
-
     <main class="ml-0 md:ml-50 pt-24 px-8 pb-10">
-      <!-- Page Header -->
-
       <div class="mb-8">
         <h1 class="text-2xl md:text-4xl font-bold text-slate-800">Settings</h1>
 
@@ -111,16 +95,12 @@
         </p>
       </div>
 
-      <!-- ================= PROFILE ================= -->
-
       <section class="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <div class="mb-6">
           <h2 class="text-2xl font-bold text-slate-800">Profile</h2>
 
           <p class="text-slate-500 text-sm mt-1">Your account information.</p>
         </div>
-
-        <!-- Profile -->
 
         <div class="flex items-center gap-5 mb-8">
           <div
@@ -139,8 +119,6 @@
           </div>
         </div>
 
-        <!-- Username -->
-
         <div class="mb-5">
           <label class="block mb-2 font-semibold text-slate-700">
             Username
@@ -152,8 +130,6 @@
             class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-900"
           />
         </div>
-
-        <!-- Email -->
 
         <div class="mb-5">
           <label class="block mb-2 font-semibold text-slate-700"> Email </label>
@@ -175,8 +151,6 @@
 
         <p id="profileMessage" class="text-sm mt-4"></p>
       </section>
-
-      <!-- ================= PASSWORD ================= -->
 
       <section class="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <div class="mb-6">
@@ -236,8 +210,6 @@
         <p id="passwordMessage" class="text-sm mt-4"></p>
       </section>
 
-      <!-- ================= ACCOUNT ACTIONS ================= -->
-
       <section class="bg-white rounded-2xl shadow-lg p-6">
         <h2 class="text-2xl font-bold text-slate-800 mb-2">Account Actions</h2>
 
@@ -251,8 +223,6 @@
         </button>
       </section>
     </main>
-
-    <!-- Logout Confirmation Modal -->
 
     <div
       id="logoutModal"

@@ -15,10 +15,6 @@ signupForm.addEventListener("submit", function (event) {
   const newPassword = password.value;
   const newConfirmPassword = confirmPassword.value;
 
-  // ========================================
-  // CHECK EMPTY FIELDS
-  // ========================================
-
   if (
     newUsername === "" ||
     newEmail === "" ||
@@ -33,10 +29,6 @@ signupForm.addEventListener("submit", function (event) {
     return;
   }
 
-  // ========================================
-  // CHECK PASSWORD MATCH
-  // ========================================
-
   if (newPassword !== newConfirmPassword) {
     message.textContent = "Passwords do not match.";
 
@@ -45,10 +37,6 @@ signupForm.addEventListener("submit", function (event) {
 
     return;
   }
-
-  // ========================================
-  // CHECK PASSWORD LENGTH
-  // ========================================
 
   if (newPassword.length < 8) {
     message.textContent = "Password must be at least 8 characters.";
@@ -59,15 +47,7 @@ signupForm.addEventListener("submit", function (event) {
     return;
   }
 
-  // ========================================
-  // GET EXISTING USERS
-  // ========================================
-
   let users = JSON.parse(localStorage.getItem("users")) || [];
-
-  // ========================================
-  // CHECK EMAIL
-  // ========================================
 
   const emailExist = users.some(function (user) {
     return user.email.toLowerCase() === newEmail;
@@ -82,10 +62,6 @@ signupForm.addEventListener("submit", function (event) {
     return;
   }
 
-  // ========================================
-  // CREATE USER
-  // ========================================
-
   const user = {
     username: newUsername,
     email: newEmail,
@@ -96,15 +72,7 @@ signupForm.addEventListener("submit", function (event) {
 
   localStorage.setItem("users", JSON.stringify(users));
 
-  // ========================================
-  // AUTOMATIC LOGIN
-  // ========================================
-
   localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-  // ========================================
-  // SUCCESS MESSAGE
-  // ========================================
 
   message.textContent = "Account created successfully!";
 
@@ -112,10 +80,6 @@ signupForm.addEventListener("submit", function (event) {
   message.classList.add("text-green-600");
 
   signupForm.reset();
-
-  // ========================================
-  // REDIRECT
-  // ========================================
 
   setTimeout(function () {
     window.location.href = "login.html";

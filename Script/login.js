@@ -36,47 +36,23 @@ loginForm.addEventListener("submit", function (event) {
   }, 2000);
 });
 
-// ========================================
-// FORGOT PASSWORD
-// ========================================
-
 const forgotPasswordBtn = document.getElementById("forgotPasswordBtn");
-
 const forgotPasswordModal = document.getElementById("forgotPasswordModal");
-
 const cancelForgotPassword = document.getElementById("cancelForgotPassword");
-
 const forgotEmail = document.getElementById("forgotEmail");
-
 const findAccountBtn = document.getElementById("findAccountBtn");
-
 const forgotEmailMessage = document.getElementById("forgotEmailMessage");
-
 const forgotEmailStep = document.getElementById("forgotEmailStep");
-
 const forgotNewPasswordStep = document.getElementById("forgotNewPasswordStep");
-
 const forgotNewPassword = document.getElementById("forgotNewPassword");
-
 const forgotConfirmPassword = document.getElementById("forgotConfirmPassword");
-
 const resetPasswordBtn = document.getElementById("resetPasswordBtn");
-
 const cancelResetPassword = document.getElementById("cancelResetPassword");
-
 const resetPasswordMessage = document.getElementById("resetPasswordMessage");
-
-// ========================================
-// OPEN MODAL
-// ========================================
 
 forgotPasswordBtn.addEventListener("click", function () {
   forgotPasswordModal.classList.remove("hidden");
 });
-
-// ========================================
-// CLOSE MODAL
-// ========================================
 
 cancelForgotPassword.addEventListener("click", function () {
   forgotPasswordModal.classList.add("hidden");
@@ -85,10 +61,6 @@ cancelForgotPassword.addEventListener("click", function () {
 cancelResetPassword.addEventListener("click", function () {
   forgotPasswordModal.classList.add("hidden");
 });
-
-// ========================================
-// FIND ACCOUNT
-// ========================================
 
 let resetUser = null;
 
@@ -117,20 +89,12 @@ findAccountBtn.addEventListener("click", function () {
     return;
   }
 
-  // Store the account we're resetting
-
   resetUser = user;
-
-  // Move to password step
 
   forgotEmailStep.classList.add("hidden");
 
   forgotNewPasswordStep.classList.remove("hidden");
 });
-
-// ========================================
-// RESET PASSWORD
-// ========================================
 
 resetPasswordBtn.addEventListener("click", function () {
   const newPassword = forgotNewPassword.value;
@@ -162,11 +126,7 @@ resetPasswordBtn.addEventListener("click", function () {
     return;
   }
 
-  // Get all users
-
   let users = JSON.parse(localStorage.getItem("users")) || [];
-
-  // Find the user again
 
   const userIndex = users.findIndex(function (user) {
     return user.email === resetUser.email;
@@ -181,11 +141,7 @@ resetPasswordBtn.addEventListener("click", function () {
     return;
   }
 
-  // Update password
-
   users[userIndex].password = newPassword;
-
-  // Save users
 
   localStorage.setItem("users", JSON.stringify(users));
 
@@ -193,15 +149,11 @@ resetPasswordBtn.addEventListener("click", function () {
 
   resetPasswordMessage.className = "text-sm mt-3 text-green-600";
 
-  // Clear fields
-
   forgotEmail.value = "";
 
   forgotNewPassword.value = "";
 
   forgotConfirmPassword.value = "";
-
-  // Return to login after 1.5 seconds
 
   setTimeout(function () {
     forgotPasswordModal.classList.add("hidden");

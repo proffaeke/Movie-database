@@ -14,7 +14,6 @@
     <nav
       class="fixed top-0 left-0 md:left-50 right-0 h-16 bg-blue-950 text-white shadow-lg z-40 flex items-center justify-end px-6"
     >
-      <!-- Profile -->
       <button
         id="menuBtn"
         class="md:hidden absolute left-4 text-white text-2xl"
@@ -23,12 +22,10 @@
       </button>
 
       <div class="flex items-center gap-3">
-        <!-- Username -->
         <span id="usernameDisplay" class="text-blue-100 font-semibold">
           User
         </span>
 
-        <!-- User Avatar -->
         <div
           id="userAvatar"
           class="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center font-bold text-white"
@@ -43,13 +40,9 @@
         id="sidebar"
         class="fixed left-0 top-0 w-50 h-screen bg-blue-950 text-white z-50 -translate-x-full md:translate-x-0 md:transition-transform duration-300"
       >
-        <!-- Logo -->
-
         <div class="px-4 pt-4">
           <h1 class="text-3xl font-bold">MovieDB</h1>
         </div>
-
-        <!-- Navigation -->
 
         <nav class="mt-10 px-2 space-y-3">
           <a
@@ -58,8 +51,6 @@
           >
             Dashboard
           </a>
-
-          <!-- Active -->
 
           <a
             href="movies.html"
@@ -83,8 +74,6 @@
           </a>
         </nav>
 
-        <!-- Logout -->
-
         <button
           id="logoutBtn"
           class="absolute bottom-8 left-2 right-2 text-left p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
@@ -97,11 +86,9 @@
         class="hidden fixed inset-0 bg-black/50 z-40 md:hidden"
       ></div>
 
-      <!-- Main Content -->
       <main
         class="ml-0 md:ml-50 pt-20 px-8 pb-8 w-full min-h-screen bg-slate-100"
       >
-        <!-- Welcome -->
         <div class="mb-8">
           <h1 class="text-2xl md:text-4xl font-bold text-slate-800">
             Welcome Back,
@@ -112,12 +99,7 @@
             Here's an overview of your Movie Database.
           </p>
         </div>
-
-        <!-- Dashboard Cards -->
-
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-          <!-- Total Movies -->
-
           <div class="bg-white rounded-2xl shadow-lg p-6">
             <p class="text-slate-500">Total Movies</p>
 
@@ -125,9 +107,6 @@
               0
             </h2>
           </div>
-
-          <!-- Favorites -->
-
           <div class="bg-white rounded-2xl shadow-lg p-6">
             <p class="text-slate-500">Favorites</p>
 
@@ -138,19 +117,12 @@
               0
             </h2>
           </div>
-
-          <!-- Genres -->
-
           <div class="bg-white rounded-2xl shadow-lg p-6">
             <p class="text-slate-500">Genres</p>
-
             <h2 id="totalGenres" class="text-4xl font-bold mt-4 text-green-600">
               0
             </h2>
           </div>
-
-          <!-- Latest Movie -->
-
           <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
             <div class="relative h-44">
               <img
@@ -159,13 +131,9 @@
                 class="w-full h-full object-cover"
               />
 
-              <!-- Dark overlay -->
-
               <div
                 class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"
               ></div>
-
-              <!-- Movie information -->
 
               <div class="absolute bottom-0 left-0 p-4 text-white">
                 <p class="text-xs text-gray-300">Latest Movie</p>
@@ -176,9 +144,7 @@
           </div>
         </div>
 
-        <!-- Bottom Dashboard Section -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-6 mt-10">
-          <!-- Movie Poster Card 1 -->
           <div
             class="lg:col-span-3 bg-white rounded-2xl shadow-lg overflow-hidden"
           >
@@ -189,7 +155,6 @@
                 class="w-full h-full object-cover"
               />
 
-              <!-- Overlay -->
               <div
                 class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex items-end"
               >
@@ -203,8 +168,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Movie Poster Card 2 -->
           <div
             class="lg:col-span-3 bg-white rounded-2xl shadow-lg overflow-hidden"
           >
@@ -214,8 +177,6 @@
                 alt="Movie Poster"
                 class="w-full h-full object-cover"
               />
-
-              <!-- Overlay -->
               <div
                 class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex items-end"
               >
@@ -229,8 +190,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Quick Actions Card -->
           <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-5">
             <h2 class="text-xl font-bold text-slate-800 mb-6">Quick Actions</h2>
 
@@ -241,14 +200,12 @@
               >
                 <span>Movies</span>
               </a>
-
               <a
                 href="favorites.html"
                 class="flex items-center gap-2 w-full bg-red-500 text-white px-4 py-3 rounded-xl hover:bg-red-600 transition"
               >
                 <span>Favorites</span>
               </a>
-
               <a
                 href="settings.html"
                 class="flex items-center gap-2 w-full bg-slate-700 text-white px-4 py-3 rounded-xl hover:bg-slate-800 transition"
@@ -260,7 +217,6 @@
         </div>
       </main>
     </div>
-    <!-- Logout Confirmation Modal -->
 
     <div
       id="logoutModal"

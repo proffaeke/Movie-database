@@ -1,16 +1,8 @@
-// ========================================
-// CHECK LOGIN
-// ========================================
-
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
 if (!loggedInUser) {
   window.location.href = "login.html";
 }
-
-// ========================================
-// ELEMENTS
-// ========================================
 
 const favoriteList = document.getElementById("favoriteList");
 
@@ -22,10 +14,6 @@ const usernameDisplay = document.getElementById("usernameDisplay");
 
 const userAvatar = document.getElementById("userAvatar");
 
-// ========================================
-// USER AVATAR
-// ========================================
-
 if (loggedInUser.username) {
   const username =
     loggedInUser.username.charAt(0).toUpperCase() +
@@ -35,20 +23,12 @@ if (loggedInUser.username) {
 
   userAvatar.textContent = username.charAt(0);
 }
-// ========================================
-// GET MOVIES
-// ========================================
 
 let allMovies = JSON.parse(localStorage.getItem("movies")) || [];
 
-// Only get movies that belong to the logged-in user
 let movies = allMovies.filter(
   (movie) => movie.ownerEmail === loggedInUser.email,
 );
-
-// ========================================
-// DISPLAY FAVORITES
-// ========================================
 
 function displayFavorites() {
   favoriteList.innerHTML = "";
@@ -57,10 +37,8 @@ function displayFavorites() {
     return movie.favorite === true;
   });
 
-  // Update count
   favoriteCount.textContent = favorites.length;
 
-  // No favorites
   if (favorites.length === 0) {
     emptyFavorites.classList.remove("hidden");
     return;
@@ -68,16 +46,11 @@ function displayFavorites() {
 
   emptyFavorites.classList.add("hidden");
 
-  // Display favorite movies
   favorites.forEach(function (movie) {
     const movieCard = document.createElement("div");
 
     movieCard.className =
       "bg-white rounded-2xl shadow-lg overflow-hidden hover:-translate-y-1 transition";
-
-    // ========================================
-    // MOVIE POSTER
-    // ========================================
 
     let posterHTML = "";
 
@@ -96,10 +69,6 @@ function displayFavorites() {
         </div>
       `;
     }
-
-    // ========================================
-    // MOVIE CARD
-    // ========================================
 
     movieCard.innerHTML = `
 
@@ -156,10 +125,6 @@ function displayFavorites() {
   });
 }
 
-// ========================================
-// REMOVE FAVORITE
-// ========================================
-
 function removeFavorite(id) {
   const movie = movies.find(function (movie) {
     return movie.id === id;
@@ -186,9 +151,6 @@ function removeFavorite(id) {
 
   displayFavorites();
 }
-// ========================================
-// LOGOUT MODAL
-// ========================================
 
 const logoutBtn = document.getElementById("logoutBtn");
 
@@ -211,15 +173,8 @@ confirmLogout.addEventListener("click", function () {
 
   window.location.href = "login.html";
 });
-// ========================================
-// INITIAL DISPLAY
-// ========================================
 
 displayFavorites();
-
-// ========================================
-// MOBILE SIDEBAR TOGGLE
-// ========================================
 
 const sidebar = document.getElementById("sidebar");
 const menuBtn = document.getElementById("menuBtn");

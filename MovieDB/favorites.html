@@ -15,20 +15,13 @@
   </head>
 
   <body class="bg-slate-100 min-h-screen">
-    <!-- ================= SIDEBAR ================= -->
-
     <aside
       id="sidebar"
       class="fixed left-0 top-0 w-50 h-screen bg-blue-950 text-white z-50 -translate-x-full md:translate-x-0 md:transition-transform duration-300"
     >
-      <!-- Logo -->
-
       <div class="px-4 pt-4">
         <h1 class="text-3xl font-bold">MovieDB</h1>
       </div>
-
-      <!-- Navigation -->
-
       <nav class="mt-10 px-2 space-y-3">
         <a
           href="dashboard.html"
@@ -59,8 +52,6 @@
         </a>
       </nav>
 
-      <!-- Logout -->
-
       <button
         id="logoutBtn"
         class="absolute bottom-8 left-2 right-2 text-left p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
@@ -73,8 +64,6 @@
       class="hidden fixed inset-0 bg-black/50 z-40 md:hidden"
     ></div>
 
-    <!-- ================= NAVBAR ================= -->
-
     <nav
       class="fixed top-0 left-0 md:left-50 right-0 h-16 bg-blue-950 text-white shadow-lg z-50 flex items-center justify-end px-6"
     >
@@ -85,12 +74,9 @@
         <i class="fa-solid fa-bars"></i>
       </button>
       <div class="flex items-center gap-3">
-        <!-- Username -->
         <span id="usernameDisplay" class="text-blue-100 font-semibold">
           User
         </span>
-
-        <!-- User Avatar -->
         <div
           id="userAvatar"
           class="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center font-bold text-white"
@@ -100,11 +86,7 @@
       </div>
     </nav>
 
-    <!-- ================= MAIN ================= -->
-
     <main class="ml-0 md:ml-50 pt-24 px-8 pb-10">
-      <!-- Header -->
-
       <div class="mb-8">
         <h1 class="text-2xl sm:text-4xl font-bold text-slate-800">
           My Favorites
@@ -114,8 +96,6 @@
           Movies you've added to your favorite collection.
         </p>
       </div>
-
-      <!-- Favorite Movies -->
 
       <div
         class="bg-white rounded-2xl shadow-lg p-5 mb-8 flex items-center justify-between"
@@ -140,8 +120,6 @@
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
       ></div>
 
-      <!-- Empty State -->
-
       <div
         id="emptyFavorites"
         class="hidden bg-white rounded-2xl shadow-lg p-12 text-center"
@@ -160,8 +138,6 @@
         </a>
       </div>
     </main>
-
-    <!-- Logout Confirmation Modal -->
 
     <div
       id="logoutModal"

@@ -11,13 +11,9 @@
     />
   </head>
   <body class="bg-slate-100 min-h-screen">
-    <!-- ================= NAVBAR ================= -->
-
     <nav
       class="fixed top-0 left-0 md:left-50 right-0 h-16 bg-blue-950 text-white shadow-lg z-50 flex items-center justify-end px-6"
     >
-      <!-- Profile -->
-
       <button
         id="menuBtn"
         class="md:hidden absolute left-4 text-white text-2xl"
@@ -41,19 +37,13 @@
       </div>
     </nav>
 
-    <!-- ================= SIDEBAR ================= -->
-
     <aside
       id="sidebar"
       class="fixed left-0 top-0 w-50 h-screen bg-blue-950 text-white z-50 -translate-x-full md:translate-x-0 md:transition-transform duration-300"
     >
-      <!-- Logo -->
-
       <div class="px-4 pt-4">
         <h1 class="text-3xl font-bold">MovieDB</h1>
       </div>
-
-      <!-- Navigation -->
 
       <nav class="mt-10 px-2 space-y-3">
         <a
@@ -62,8 +52,6 @@
         >
           Dashboard
         </a>
-
-        <!-- Active -->
 
         <a
           href="movies.html"
@@ -87,8 +75,6 @@
         </a>
       </nav>
 
-      <!-- Logout -->
-
       <button
         id="logoutBtn"
         class="absolute bottom-8 left-2 right-2 text-left p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
@@ -101,11 +87,7 @@
       class="hidden fixed inset-0 bg-black/50 z-40 md:hidden"
     ></div>
 
-    <!-- ================= MAIN ================= -->
-
     <main class="ml-0 md:ml-50 pt-24 px-4 md:px-8 pb-10">
-      <!-- Header -->
-
       <div
         class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 w-full"
       >
@@ -118,9 +100,6 @@
             Add, manage and organize your movie collection.
           </p>
         </div>
-
-        <!-- Add Movie Button -->
-
         <button
           id="openAddMovie"
           class="bg-blue-900 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-800 transition"
@@ -128,8 +107,6 @@
           + Add Movie
         </button>
       </div>
-
-      <!-- ================= SEARCH / FILTER ================= -->
 
       <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-5 mb-8 w-full">
         <div class="flex flex-col md:flex-row gap-4 w-full">
@@ -149,8 +126,6 @@
         </div>
       </div>
 
-      <!-- ================= MOVIE COUNT ================= -->
-
       <div class="flex items-center justify-between mb-5 w-full">
         <h2 class="text-xl sm:text-2xl font-bold text-slate-800">
           Movie Collection
@@ -159,14 +134,10 @@
         <p class="text-slate-500"><span id="movieCount">0</span> Movies</p>
       </div>
 
-      <!-- ================= MOVIE LIST ================= -->
-
       <div
         id="movieList"
         class="w-full min-w-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
       ></div>
-
-      <!-- Empty State -->
 
       <div
         id="emptyState"
@@ -181,8 +152,6 @@
         </p>
       </div>
     </main>
-
-    <!-- ================= ADD MOVIE MODAL ================= -->
 
     <div
       id="movieModal"
@@ -203,8 +172,6 @@
         </div>
 
         <form id="movieForm" class="space-y-5">
-          <!-- Title -->
-
           <div>
             <label class="block mb-2 font-semibold text-slate-700">
               Movie Title
@@ -218,8 +185,6 @@
               required
             />
           </div>
-
-          <!-- Genre -->
 
           <div>
             <label class="block mb-2 font-semibold text-slate-700">
@@ -235,8 +200,6 @@
             />
           </div>
 
-          <!-- Release Year -->
-
           <div>
             <label class="block mb-2 font-semibold text-slate-700">
               Release Year
@@ -250,8 +213,6 @@
               required
             />
           </div>
-
-          <!-- Buttons -->
 
           <div class="flex gap-3 pt-3">
             <button
@@ -272,8 +233,6 @@
         </form>
       </div>
     </div>
-
-    <!-- ================= DELETE MODAL ================= -->
 
     <div
       id="deleteModal"
@@ -304,7 +263,6 @@
         </div>
       </div>
     </div>
-    <!-- Logout Confirmation Modal -->
 
     <div
       id="logoutModal"
