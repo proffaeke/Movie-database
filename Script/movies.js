@@ -68,12 +68,13 @@ function displayMovies(movieArray = movies) {
 
     if (movie.poster && movie.poster !== "N/A") {
       posterHTML = `
-        <img
-          src="${movie.poster}"
-          alt="${movie.title}"
-          class="w-full h-full object-cover"
-        />
-      `;
+    <img
+      src="${movie.poster}"
+      alt="${movie.title}"
+      class="w-full h-full object-cover"
+      onerror="this.onerror=null; this.src='/image/default-movie.webp';"
+    />
+  `;
     } else {
       posterHTML = `
         <div class="h-full flex items-center justify-center bg-blue-950">
@@ -107,24 +108,42 @@ function displayMovies(movieArray = movies) {
         <p class="text-slate-500 text-sm mt-1">
           Released: ${movie.releaseYear}
         </p>
-        <div class="flex gap-3 mt-5">
-          <button
-            onclick="editMovie(${movie.id})"
-            class="flex-1 bg-blue-100 text-blue-900 py-2 rounded-lg font-semibold hover:bg-blue-200"
-          >
-            Edit
-          </button>
-          <button
-            onclick="openDeleteModal(${movie.id})"
-            class="flex-1 bg-red-100 text-red-600 py-2 rounded-lg font-semibold hover:bg-red-200"
-          >
-            Delete
-          </button>
-        </div>
+        <div class="flex flex-col gap-2 mt-5">
+  <button
+    onclick="viewMovie(${movie.id})"
+    class="w-full bg-blue-900 text-white py-2 rounded-lg font-semibold hover:bg-blue-800 transition"
+  >
+    <i class="fa-solid fa-circle-info mr-2"></i>
+    View Details
+  </button>
+
+  <div class="flex gap-3">
+    <button
+      onclick="editMovie(${movie.id})"
+      class="flex-1 bg-blue-100 text-blue-900 py-2 rounded-lg font-semibold hover:bg-blue-200"
+    >
+      Edit
+    </button>
+    <button
+      onclick="openDeleteModal(${movie.id})"
+      class="flex-1 bg-red-100 text-red-600 py-2 rounded-lg font-semibold hover:bg-red-200"
+    >
+      Delete
+    </button>
+  </div>
+</div>
       </div>
     `;
     movieList.appendChild(movieCard);
   });
+}
+
+function viewMovie(id) {
+  const movie = movies.find(
+    (movie) => movie.id === id && movie.ownerEmail === loggedInUser.email,
+  );
+  if (!movie) return;
+  window.location.href = `movie-details.html?id=${movie.id}`;
 }
 
 async function getMovieFromOMDb(title) {
@@ -186,7 +205,9 @@ movieForm.addEventListener("submit", async function (event) {
       title: movieData.Title,
       genre: movieData.Genre,
       releaseYear: movieData.Year,
+      description: movieData.Plot,
       poster: movieData.Poster,
+      trailer: "",
       favorite: false,
       ownerEmail: loggedInUser.email,
     };
