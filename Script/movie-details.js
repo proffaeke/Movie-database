@@ -1,57 +1,79 @@
 const TMDB_API_KEY = "b88979e104561c49823fdeee3859d8c4";
-
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = Number(urlParams.get("id"));
-
-console.log("Movie ID:", movieId);
-
 const movies = JSON.parse(localStorage.getItem("movies")) || [];
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
 const movie = movies.find((movie) => movie.id === movieId);
-console.log("Selected movie:", movie);
-
 const movieDetails = document.getElementById("movieDetails");
+const usernameDisplay = document.getElementById("usernameDisplay");
+const userAvatar = document.getElementById("userAvatar");
+const sidebar = document.getElementById("sidebar");
+const menuBtn = document.getElementById("menuBtn");
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+const logoutBtn = document.getElementById("logoutBtn");
+const logoutModal = document.getElementById("logoutModal");
+const cancelLogout = document.getElementById("cancelLogout");
+const confirmLogout = document.getElementById("confirmLogout");
+
+if (loggedInUser) {
+  const username =
+    loggedInUser.username.charAt(0).toUpperCase() +
+    loggedInUser.username.slice(1);
+
+  usernameDisplay.textContent = username;
+  userAvatar.textContent = username.charAt(0);
+}
+
+menuBtn.addEventListener("click", function () {
+  sidebar.classList.toggle("-translate-x-full");
+  sidebarOverlay.classList.toggle("hidden");
+});
+sidebarOverlay.addEventListener("click", function () {
+  sidebar.classList.add("-translate-x-full");
+
+  sidebarOverlay.classList.add("hidden");
+});
+
+logoutBtn.addEventListener("click", function () {
+  logoutModal.classList.remove("hidden");
+});
+cancelLogout.addEventListener("click", function () {
+  logoutModal.classList.add("hidden");
+});
+confirmLogout.addEventListener("click", function () {
+  localStorage.removeItem("loggedInUser");
+  window.location.href = "login.html";
+});
+
 async function findTmdbMovie(title) {
   const response = await fetch(
     `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(title)}`,
   );
 
-  const usernameDisplay = document.getElementById("usernameDisplay");
-  const userAvatar = document.getElementById("userAvatar");
-
-  if (loggedInUser) {
-    const username =
-      loggedInUser.username.charAt(0).toUpperCase() +
-      loggedInUser.username.slice(1);
-
-    usernameDisplay.textContent = username;
-    userAvatar.textContent = username.charAt(0);
-  }
-
   const data = await response.json();
-
-  console.log("TMDB movie search:", data);
-
   return data.results[0];
 }
 
 findTmdbMovie(movie.title).then((tmdbMovie) => {
-  console.log("Matched TMDB movie:", tmdbMovie);
-
   fetch(
     `https://api.themoviedb.org/3/movie/${tmdbMovie.id}/videos?api_key=${TMDB_API_KEY}`,
   )
     .then((response) => response.json())
     .then((data) => {
       console.log("TMDB movie videos:", data);
-      const trailer = data.results.find(
-        (video) =>
-          video.site === "YouTube" &&
-          video.type === "Trailer" &&
-          video.official === true,
+      const youtubeVideos = data.results.filter(
+        (video) => video.site === "YouTube",
       );
-      console.log("Selected trailer:", trailer);
+
+      const trailer =
+        youtubeVideos.find(
+          (video) => video.type === "Trailer" && video.official === true,
+        ) ||
+        youtubeVideos.find(
+          (video) => video.type === "Teaser" && video.official === true,
+        ) ||
+        youtubeVideos.find((video) => video.type === "Trailer") ||
+        youtubeVideos.find((video) => video.type === "Teaser");
       const trailerContainer = document.getElementById("trailerContainer");
 
       if (trailer) {
