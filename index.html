@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121418" />
+    <title>MovieDB | Discover Movies</title>
+    <link href="/src/output.css" rel="stylesheet" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+
+  <body class="min-h-screen bg-[#121418] text-[#F1F1F1]">
+    <!-- Navbar -->
+    <header class="border-b border-[#343840]">
+      <nav
+        class="mx-auto flex max-w-6xl items-center justify-between px-5 py-5"
+      >
+        <a href="./index.html" class="text-xl font-bold">
+          MOVIE<span class="text-[#D6AD60]">DB</span>
+        </a>
+
+        <div class="flex items-center gap-5">
+          <a
+            href="./MovieDB/login.html"
+            class="text-sm text-[#A6AAB3] hover:text-white"
+          >
+            Sign In
+          </a>
+
+          <a
+            href="./MovieDB/signup.html"
+            class="rounded-md bg-[#D6AD60] px-4 py-2.5 text-sm font-semibold text-[#121418] hover:bg-[#E5C47F]"
+          >
+            Sign Up
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section
+        class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-2 md:py-24"
+      >
+        <div>
+          <p
+            class="mb-4 text-sm font-medium uppercase tracking-widest text-[#D6AD60]"
+          >
+            Your personal movie library
+          </p>
+
+          <h1 class="max-w-lg text-4xl font-bold leading-tight sm:text-5xl">
+            Discover movies.
+            <span class="text-[#D6AD60]">Find your next favorite.</span>
+          </h1>
+
+          <p class="mt-6 max-w-md text-base leading-7 text-[#A6AAB3]">
+            Explore movies, watch trailers, and save your favorites. Everything
+            you love about movies, in one place.
+          </p>
+
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a
+              href="./MovieDB/signup.html"
+              class="rounded-md bg-[#D6AD60] px-5 py-3 font-semibold text-[#121418] hover:bg-[#E5C47F]"
+            >
+              Get Started
+            </a>
+
+            <a
+              href="./MovieDB/login.html"
+              class="text-sm font-medium text-[#F1F1F1] hover:text-[#D6AD60]"
+            >
+              Sign in
+            </a>
+          </div>
+        </div>
+
+        <!-- Movie Posters -->
+        <div class="grid grid-cols-3 items-start gap-3 sm:gap-5">
+          <img
+            src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg"
+            alt="Oppenheimer movie poster"
+            class="mt-8 aspect-[2/3] w-full rounded-sm object-cover"
+          />
+
+          <img
+            src="https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg"
+            alt="Deadpool and Wolverine movie poster"
+            class="aspect-[2/3] w-full rounded-sm object-cover"
+          />
+
+          <img
+            src="https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg"
+            alt="Dune: Part Two movie poster"
+            class="mt-8 aspect-[2/3] w-full rounded-sm object-cover"
+          />
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="border-t border-[#343840]">
+        <div class="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-3">
+          <div>
+            <i data-lucide="search" class="mb-3 h-5 w-5 text-[#D6AD60]"></i>
+            <h2 class="font-semibold">Discover Movies</h2>
+            <p class="mt-2 text-sm leading-6 text-[#A6AAB3]">
+              Browse movies and explore the stories behind them.
+            </p>
+          </div>
+
+          <div>
+            <i data-lucide="heart" class="mb-3 h-5 w-5 text-[#D6AD60]"></i>
+            <h2 class="font-semibold">Save Favorites</h2>
+            <p class="mt-2 text-sm leading-6 text-[#A6AAB3]">
+              Keep your favorite movies together in one place.
+            </p>
+          </div>
+
+          <div>
+            <i
+              data-lucide="play-circle"
+              class="mb-3 h-5 w-5 text-[#D6AD60]"
+            ></i>
+            <h2 class="font-semibold">Watch Trailers</h2>
+            <p class="mt-2 text-sm leading-6 text-[#A6AAB3]">
+              Explore trailers before choosing your next movie.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="border-t border-[#343840] px-5 py-6 text-center text-sm text-[#A6AAB3]"
+    >
+      <p>&copy; <span id="year"></span> MovieDB.</p>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    </script>
+  </body>
+</html>
