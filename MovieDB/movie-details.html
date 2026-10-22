@@ -1,147 +1,204 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Details | MovieDB</title>
     <link href="/src/output.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
   </head>
-  <body class="bg-slate-100 min-h-screen">
-    <!-- Top Navigation -->
-    <nav
-      class="fixed top-0 left-0 md:left-50 right-0 h-16 bg-blue-950 text-white shadow-lg z-50 flex items-center justify-end px-6"
-    >
-      <button
-        id="menuBtn"
-        class="md:hidden absolute left-4 text-white text-2xl"
-      >
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <div class="flex items-center gap-3">
-        <span id="usernameDisplay" class="text-blue-100 font-semibold">
-          User
-        </span>
 
-        <div
-          id="userAvatar"
-          class="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center font-bold text-white"
-        >
-          U
-        </div>
-      </div>
-    </nav>
+  <body class="min-h-screen bg-[#121418] text-[#F1F1F1]">
+    <!-- Mobile Sidebar Overlay -->
+    <div
+      id="sidebarOverlay"
+      class="fixed inset-0 z-40 hidden bg-black/60 md:hidden"
+    ></div>
 
     <!-- Sidebar -->
     <aside
       id="sidebar"
-      class="fixed left-0 top-0 w-50 h-screen bg-blue-950 text-white z-50 -translate-x-full md:translate-x-0 md:transition-transform duration-300"
+      class="fixed left-0 top-0 z-50 flex h-screen w-64 -translate-x-full flex-col border-r border-[#343840] bg-[#1C2027] transition-transform duration-300 md:translate-x-0"
     >
-      <div class="px-4 pt-4">
-        <h1 class="text-3xl font-bold">MovieDB</h1>
+      <div class="border-b border-[#343840] px-5 py-5">
+        <a href="../index.html" class="flex items-center">
+          <span class="text-2xl font-bold tracking-wide"
+            >MOVIE<span class="text-[#D6AD60]">DB</span></span
+          >
+        </a>
+        <div class="hidden text-sm text-[#A6AAB3] md:block">
+          Your collection, your way.
+        </div>
       </div>
 
-      <nav class="mt-10 px-2 space-y-3">
+      <nav class="flex-1 space-y-2 px-4 py-8">
         <a
           href="dashboard.html"
-          class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+          class="flex items-center gap-3 rounded-xl px-4 py-3 text-[#A6AAB3] transition hover:bg-[#272C35] hover:text-white"
         >
-          Dashboard
+          <i data-lucide="layout-dashboard" class="h-5 w-5"></i>
+          <span>Dashboard</span>
         </a>
 
         <a
           href="movies.html"
-          class="block p-3 rounded-lg bg-white text-blue-950 font-semibold"
+          class="flex items-center gap-3 rounded-xl bg-[#D6AD60]/10 px-4 py-3 font-semibold text-[#D6AD60]"
         >
-          Movies
+          <i data-lucide="clapperboard" class="h-5 w-5"></i>
+          <span>Movies</span>
         </a>
 
         <a
           href="favorites.html"
-          class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+          class="flex items-center gap-3 rounded-xl px-4 py-3 text-[#A6AAB3] transition hover:bg-[#272C35] hover:text-white"
         >
-          Favorites
+          <i data-lucide="heart" class="h-5 w-5"></i>
+          <span>Favorites</span>
         </a>
 
         <a
           href="settings.html"
-          class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+          class="flex items-center gap-3 rounded-xl px-4 py-3 text-[#A6AAB3] transition hover:bg-[#272C35] hover:text-white"
         >
-          Settings
+          <i data-lucide="settings" class="h-5 w-5"></i>
+          <span>Settings</span>
         </a>
       </nav>
 
-      <button
-        id="logoutBtn"
-        class="absolute bottom-8 left-2 right-2 text-left p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
-      >
-        Sign Out
-      </button>
+      <div class="border-t border-[#343840] p-4">
+        <button
+          id="logoutBtn"
+          type="button"
+          class="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-[#A6AAB3] transition hover:bg-red-500/10 hover:text-red-400"
+        >
+          <i data-lucide="log-out" class="h-5 w-5"></i>
+          <span>Sign Out</span>
+        </button>
+      </div>
     </aside>
 
-    <!-- Mobile Sidebar Overlay -->
-    <div
-      id="sidebarOverlay"
-      class="hidden fixed inset-0 bg-black/50 z-40 md:hidden"
-    ></div>
-
-    <!-- Main Content -->
-    <main class="ml-0 md:ml-50 pt-24 px-4 md:px-8 pb-10">
-      <!-- Back Button -->
-
-      <a href="movies.html">
-        <button
-          id="backToMovies"
-          class="flex items-center gap-2 text-blue-900 font-semibold hover:text-blue-700 transition mb-6"
-        >
-          <i class="fa-solid fa-arrow-left"></i>
-          Back to Movies
-        </button>
-      </a>
-
-      <!-- Movie Details -->
-      <section
-        id="movieDetails"
-        class="bg-white rounded shadow-lg overflow-hidden"
+    <!-- Main Area -->
+    <div class="min-h-screen md:ml-64">
+      <!-- Top Navigation -->
+      <header
+        class="fixed top-0 left-0 right-0 z-40 flex h-16 items-center justify-between border-b border-[#343840] bg-[#1C2027] px-5 shadow-lg md:left-50 md:justify-end md:px-8"
       >
-        <!-- Content will be inserted by JavaScript -->
-      </section>
-    </main>
+        <button
+          id="menuBtn"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-controls="sidebar"
+          aria-expanded="false"
+          class="rounded-lg p-2 text-[#F1F1F1] transition hover:bg-[#272C35] md:hidden"
+        >
+          <i data-lucide="menu" class="h-6 w-6"></i>
+        </button>
 
-    <!-- Logout Modal -->
+        <a
+          href="movie-details.html"
+          class="text-lg font-semibold tracking-wide md:hidden"
+        >
+          MOVIE<span class="text-[#D6AD60]">DB</span>
+        </a>
+
+        <div class="flex items-center gap-3">
+          <span
+            id="usernameDisplay"
+            class="text-sm font-semibold text-[#F1F1F1]"
+          >
+            User
+          </span>
+
+          <div
+            id="userAvatar"
+            class="flex h-10 w-10 items-center justify-center rounded-full border border-[#D6AD60]/40 bg-[#D6AD60]/15 font-bold text-[#D6AD60]"
+          >
+            U
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <main class="px-4 pb-12 pt-28 md:px-8">
+        <a
+          href="movies.html"
+          id="backToMovies"
+          class="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-[#D6AD60] transition hover:text-[#F0D49B]"
+        >
+          <i data-lucide="arrow-left" class="h-4 w-4"></i>
+          Back to Movies
+        </a>
+
+        <div class="mb-7">
+          <p
+            class="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#D6AD60]"
+          >
+            Your collection
+          </p>
+          <h1 class="text-3xl font-bold tracking-tight md:text-4xl">
+            Movie Details
+          </h1>
+          <p class="mt-2 text-sm text-[#A6AAB3]">
+            Explore movie information and watch its trailer.
+          </p>
+        </div>
+
+        <section
+          id="movieDetails"
+          aria-live="polite"
+          class="overflow-hidden rounded-2xl border border-[#343840] bg-[#1C2027] shadow-xl"
+        >
+          <div
+            class="flex min-h-64 items-center justify-center p-8 text-center text-[#A6AAB3]"
+          >
+            <p>Loading movie details...</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
     <div
       id="logoutModal"
-      class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-100"
+      class="fixed inset-0 z-100 hidden items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="logoutModalTitle"
     >
-      <div class="bg-white rounded-3xl p-6 w-90 max-w-md shadow-2xl">
-        <h2 class="text-3xl font-bold text-slate-800 mb-3">Sign Out</h2>
+      <div
+        class="w-full max-w-md rounded-2xl border border-[#343840] bg-[#1C2027] p-6 shadow-2xl"
+      >
+        <div
+          class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-400"
+        >
+          <i data-lucide="log-out" class="h-6 w-6"></i>
+        </div>
 
-        <p class="text-slate-600 mb-8">
+        <h2 id="logoutModalTitle" class="mb-2 text-2xl font-bold">Sign Out</h2>
+
+        <p class="mb-7 text-sm leading-6 text-[#A6AAB3]">
           Are you sure you want to sign out of your account?
         </p>
 
-        <div class="flex justify-end gap-4">
+        <div class="flex justify-end gap-3">
           <button
             id="cancelLogout"
-            class="px-6 py-3 rounded-xl bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold cursor-pointer transition"
+            type="button"
+            class="rounded-xl border border-[#343840] px-5 py-3 text-sm font-semibold transition hover:bg-[#272C35]"
           >
             Cancel
           </button>
 
           <button
             id="confirmLogout"
-            class="px-6 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold cursor-pointer transition"
+            type="button"
+            class="rounded-xl bg-red-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-600"
           >
             Sign Out
           </button>
         </div>
       </div>
     </div>
-
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="/Script/movie-details.js"></script>
   </body>
 </html>

@@ -3,250 +3,385 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Dashboard</title>
-    <link href="/src/output.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    <meta
+      name="description"
+      content="Manage your movie collection, favorites, and genres with MovieDB."
     />
+    <title>Dashboard | MovieDB</title>
+    <link href="/src/output.css" rel="stylesheet" />
   </head>
-  <body class="bg-slate-100 overflow-x-hidden">
-    <nav
-      class="fixed top-0 left-0 md:left-50 right-0 h-16 bg-blue-950 text-white shadow-lg z-40 flex items-center justify-end px-6"
+
+  <body class="min-h-screen overflow-x-hidden bg-[#121418] text-[#F1F1F1]">
+    <!-- Top Navbar -->
+    <header
+      class="fixed left-0 right-0 top-0 z-40 flex h-16 items-center justify-between border-b border-[#343840] bg-[#1C2027] px-5 md:left-50 md:justify-end md:px-8"
     >
       <button
         id="menuBtn"
-        class="md:hidden absolute left-4 text-white text-2xl"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="sidebar"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-[#F1F1F1] transition hover:bg-[#292D35] md:hidden"
       >
-        <i class="fa-solid fa-bars"></i>
+        <i data-lucide="menu" class="h-5 w-5"></i>
       </button>
 
+      <a
+        href="dashboard.html"
+        class="text-lg font-semibold tracking-wide md:hidden"
+      >
+        MOVIE<span class="text-[#D6AD60]">DB</span>
+      </a>
+
       <div class="flex items-center gap-3">
-        <span id="usernameDisplay" class="text-blue-100 font-semibold">
+        <span
+          id="usernameDisplay"
+          class="max-w-36 truncate text-sm font-medium text-[#D5D7DC]"
+        >
           User
         </span>
 
         <div
           id="userAvatar"
-          class="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center font-bold text-white"
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-[#8D7547] bg-[#D6AD60] font-semibold text-[#121418]"
         >
           U
         </div>
       </div>
-    </nav>
+    </header>
 
-    <div class="min-h-screen flex">
+    <div class="min-h-screen">
+      <!-- Sidebar -->
       <aside
         id="sidebar"
-        class="fixed left-0 top-0 w-50 h-screen bg-blue-950 text-white z-50 -translate-x-full md:translate-x-0 md:transition-transform duration-300"
+        class="fixed left-0 top-0 z-50 flex h-screen w-50 -translate-x-full flex-col border-r border-[#343840] bg-[#1C2027] transition-transform duration-300 md:translate-x-0"
       >
-        <div class="px-4 pt-4">
-          <h1 class="text-3xl font-bold">MovieDB</h1>
+        <div class="border-b border-[#343840] px-5 py-5">
+          <a href="../index.html" class="text-2xl font-bold tracking-wide">
+            MOVIE<span class="text-[#D6AD60]">DB</span>
+          </a>
+
+          <p class="mt-1 text-xs tracking-wide text-[#777D87]">
+            YOUR MOVIE LIBRARY
+          </p>
         </div>
 
-        <nav class="mt-10 px-2 space-y-3">
+        <nav class="mt-7 flex-1 space-y-2 px-3" aria-label="Main navigation">
           <a
             href="dashboard.html"
-            class="block p-3 rounded-lg bg-white text-blue-950 transition"
+            aria-current="page"
+            class="flex items-center gap-3 rounded-lg border border-[#51462F] bg-[#302B22] px-3 py-3 text-sm font-medium text-[#E6C987]"
           >
-            Dashboard
+            <i data-lucide="layout-dashboard" class="h-4 w-4"></i>
+            <span>Dashboard</span>
           </a>
 
           <a
             href="movies.html"
-            class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 font-semibold"
+            class="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-[#A6AAB3] transition hover:bg-[#292D35] hover:text-[#F1F1F1]"
           >
-            Movies
+            <i data-lucide="clapperboard" class="h-4 w-4"></i>
+            <span>Movies</span>
           </a>
 
           <a
             href="favorites.html"
-            class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+            class="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-[#A6AAB3] transition hover:bg-[#292D35] hover:text-[#F1F1F1]"
           >
-            Favorites
+            <i data-lucide="heart" class="h-4 w-4"></i>
+            <span>Favorites</span>
           </a>
 
           <a
             href="settings.html"
-            class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+            class="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-[#A6AAB3] transition hover:bg-[#292D35] hover:text-[#F1F1F1]"
           >
-            Settings
+            <i data-lucide="settings-2" class="h-4 w-4"></i>
+            <span>Settings</span>
           </a>
         </nav>
 
-        <button
-          id="logoutBtn"
-          class="absolute bottom-8 left-2 right-2 text-left p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
-        >
-          Sign Out
-        </button>
+        <div class="border-t border-[#343840] p-3">
+          <button
+            id="logoutBtn"
+            type="button"
+            class="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm text-[#A6AAB3] transition hover:bg-[#332526] hover:text-[#F0A0A0]"
+          >
+            <i data-lucide="log-out" class="h-4 w-4"></i>
+            <span>Sign Out</span>
+          </button>
+        </div>
       </aside>
+
+      <!-- Mobile Sidebar Overlay -->
       <div
         id="sidebarOverlay"
-        class="hidden fixed inset-0 bg-black/50 z-40 md:hidden"
+        class="fixed inset-0 z-40 hidden bg-black/70 md:hidden"
       ></div>
 
+      <!-- Main Dashboard -->
       <main
-        class="ml-0 md:ml-50 pt-20 px-8 pb-8 w-full min-h-screen bg-slate-100"
+        class="min-h-screen w-full bg-[#121418] px-5 pb-10 pt-24 md:ml-50 md:w-[calc(100%-12.5rem)] md:px-8"
       >
-        <div class="mb-8">
-          <h1 class="text-2xl md:text-4xl font-bold text-slate-800">
-            Welcome Back,
-            <span id="welcomeUser" class="text-blue-900"></span>
+        <!-- Page Heading -->
+        <section class="mb-8">
+          <p
+            class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#D6AD60]"
+          >
+            Your collection
+          </p>
+
+          <h1 class="text-2xl font-semibold tracking-tight sm:text-3xl">
+            Welcome back,
+            <span id="welcomeUser" class="text-[#D6AD60]"></span>
           </h1>
 
-          <p class="text-slate-500 mt-2">
-            Here's an overview of your Movie Database.
+          <p class="mt-2 text-sm leading-6 text-[#A6AAB3]">
+            Here's an overview of your movie database.
           </p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-          <div class="bg-white rounded-2xl shadow-lg p-6">
-            <p class="text-slate-500">Total Movies</p>
+        </section>
 
-            <h2 id="totalMovies" class="text-4xl font-bold mt-4 text-blue-900">
-              0
-            </h2>
-          </div>
-          <div class="bg-white rounded-2xl shadow-lg p-6">
-            <p class="text-slate-500">Favorites</p>
+        <!-- Statistics -->
+        <section
+          class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
+          aria-label="Movie collection statistics"
+        >
+          <article class="rounded-xl border border-[#343840] bg-[#1C2027] p-5">
+            <div class="flex items-center justify-between gap-3">
+              <p class="text-sm text-[#A6AAB3]">Total Movies</p>
+              <i data-lucide="film" class="h-5 w-5 text-[#D6AD60]"></i>
+            </div>
 
-            <h2
-              id="favoriteMovies"
-              class="text-4xl font-bold mt-4 text-red-500"
-            >
-              0
-            </h2>
-          </div>
-          <div class="bg-white rounded-2xl shadow-lg p-6">
-            <p class="text-slate-500">Genres</p>
-            <h2 id="totalGenres" class="text-4xl font-bold mt-4 text-green-600">
-              0
-            </h2>
-          </div>
-          <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <h2 id="totalMovies" class="mt-5 text-3xl font-semibold">0</h2>
+
+            <p class="mt-2 text-xs text-[#777D87]">Movies in your collection</p>
+          </article>
+
+          <article class="rounded-xl border border-[#343840] bg-[#1C2027] p-5">
+            <div class="flex items-center justify-between gap-3">
+              <p class="text-sm text-[#A6AAB3]">Favorites</p>
+              <i data-lucide="heart" class="h-5 w-5 text-[#D6AD60]"></i>
+            </div>
+
+            <h2 id="favoriteMovies" class="mt-5 text-3xl font-semibold">0</h2>
+
+            <p class="mt-2 text-xs text-[#777D87]">Movies you love</p>
+          </article>
+
+          <article class="rounded-xl border border-[#343840] bg-[#1C2027] p-5">
+            <div class="flex items-center justify-between gap-3">
+              <p class="text-sm text-[#A6AAB3]">Genres</p>
+              <i data-lucide="layers-3" class="h-5 w-5 text-[#D6AD60]"></i>
+            </div>
+
+            <h2 id="totalGenres" class="mt-5 text-3xl font-semibold">0</h2>
+
+            <p class="mt-2 text-xs text-[#777D87]">Genres represented</p>
+          </article>
+
+          <!-- Latest Movie -->
+          <article
+            class="overflow-hidden rounded-xl border border-[#343840] bg-[#1C2027]"
+          >
             <div class="relative h-44">
               <img
                 id="latestMoviePoster"
                 src="/image/default-movie.webp"
-                class="w-full h-full object-cover"
+                alt="Latest movie poster"
+                class="h-full w-full object-cover"
               />
 
               <div
-                class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"
+                class="absolute inset-0 bg-linear-to-t from-[#121418] via-black/20 to-transparent"
               ></div>
 
-              <div class="absolute bottom-0 left-0 p-4 text-white">
-                <p class="text-xs text-gray-300">Latest Movie</p>
-
-                <h2 id="latestMovie" class="text-xl font-bold mt-1">None</h2>
+              <div class="absolute inset-x-0 bottom-0 p-4">
+                <p class="text-xs text-[#D6AD60]">LATEST ADDITION</p>
+                <h2
+                  id="latestMovie"
+                  class="mt-1 truncate text-lg font-semibold"
+                >
+                  None
+                </h2>
               </div>
             </div>
+          </article>
+        </section>
+
+        <!-- Recently Added and Quick Actions -->
+        <section class="mt-10">
+          <div class="mb-5 flex items-center justify-between gap-4">
+            <div>
+              <h2 class="text-xl font-semibold">Recently Added</h2>
+              <p class="mt-1 text-sm text-[#777D87]">
+                A couple of movies to revisit.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-6 mt-10">
-          <div
-            class="lg:col-span-3 bg-white rounded-2xl shadow-lg overflow-hidden"
-          >
-            <div class="relative h-80">
-              <img
-                src="/image/the-lion-king.webp"
-                alt="Movie Poster"
-                class="w-full h-full object-cover"
-              />
+          <div class="grid grid-cols-1 gap-5 lg:grid-cols-8">
+            <!-- Movie One -->
+            <article
+              class="group overflow-hidden rounded-xl border border-[#343840] bg-[#1C2027] lg:col-span-3"
+            >
+              <div class="relative h-72 sm:h-80">
+                <img
+                  src="/image/the-lion-king.webp"
+                  alt="The Lion King movie poster"
+                  class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+                />
 
-              <div
-                class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex items-end"
-              >
-                <div class="p-6 text-white">
-                  <p class="text-sm text-gray-300">Recently Added</p>
+                <div
+                  class="absolute inset-0 bg-linear-to-t from-[#121418] via-black/20 to-transparent"
+                ></div>
 
-                  <h2 class="text-2xl font-bold">The Lion King</h2>
+                <div class="absolute inset-x-0 bottom-0 p-5">
+                  <p
+                    class="mb-2 text-xs font-medium uppercase tracking-wider text-[#D6AD60]"
+                  >
+                    Recently Added
+                  </p>
 
-                  <p class="text-sm mt-1">Animation • 2019</p>
+                  <h3 class="text-xl font-semibold">The Lion King</h3>
+
+                  <p class="mt-2 text-sm text-[#D5D7DC]">
+                    Animation <span class="mx-1 text-[#777D87]">•</span> 2019
+                  </p>
                 </div>
               </div>
-            </div>
-          </div>
-          <div
-            class="lg:col-span-3 bg-white rounded-2xl shadow-lg overflow-hidden"
-          >
-            <div class="relative h-80">
-              <img
-                src="/image/Avengers.webp"
-                alt="Movie Poster"
-                class="w-full h-full object-cover"
-              />
-              <div
-                class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex items-end"
-              >
-                <div class="p-6 text-white">
-                  <p class="text-sm text-gray-300">Recently Added</p>
+            </article>
 
-                  <h2 class="text-2xl font-bold">Avengers: Endgame</h2>
+            <!-- Movie Two -->
+            <article
+              class="group overflow-hidden rounded-xl border border-[#343840] bg-[#1C2027] lg:col-span-3"
+            >
+              <div class="relative h-72 sm:h-80">
+                <img
+                  src="/image/Avengers.webp"
+                  alt="Avengers: Endgame movie poster"
+                  class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+                />
 
-                  <p class="text-sm mt-1">Action • 2019</p>
+                <div
+                  class="absolute inset-0 bg-linear-to-t from-[#121418] via-black/20 to-transparent"
+                ></div>
+
+                <div class="absolute inset-x-0 bottom-0 p-5">
+                  <p
+                    class="mb-2 text-xs font-medium uppercase tracking-wider text-[#D6AD60]"
+                  >
+                    Recently Added
+                  </p>
+
+                  <h3 class="text-xl font-semibold">Avengers: Endgame</h3>
+
+                  <p class="mt-2 text-sm text-[#D5D7DC]">
+                    Action <span class="mx-1 text-[#777D87]">•</span> 2019
+                  </p>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-5">
-            <h2 class="text-xl font-bold text-slate-800 mb-6">Quick Actions</h2>
+            </article>
 
-            <div class="space-y-4">
-              <a
-                href="movies.html"
-                class="flex items-center gap-2 w-full bg-blue-900 text-white px-4 py-3 rounded-xl hover:bg-blue-800 transition"
-              >
-                <span>Movies</span>
-              </a>
-              <a
-                href="favorites.html"
-                class="flex items-center gap-2 w-full bg-red-500 text-white px-4 py-3 rounded-xl hover:bg-red-600 transition"
-              >
-                <span>Favorites</span>
-              </a>
-              <a
-                href="settings.html"
-                class="flex items-center gap-2 w-full bg-slate-700 text-white px-4 py-3 rounded-xl hover:bg-slate-800 transition"
-              >
-                <span>Settings</span>
-              </a>
-            </div>
+            <!-- Quick Actions -->
+            <article
+              class="rounded-xl border border-[#343840] bg-[#1C2027] p-5 lg:col-span-2"
+            >
+              <h2 class="text-lg font-semibold">Quick Actions</h2>
+
+              <p class="mt-1 text-sm text-[#777D87]">
+                Jump straight to a section.
+              </p>
+
+              <div class="mt-6 space-y-3">
+                <a
+                  href="movies.html"
+                  class="flex items-center justify-between gap-3 rounded-lg border border-[#343840] bg-[#121418] px-4 py-3 text-sm text-[#D5D7DC] transition hover:border-[#8D7547] hover:text-[#D6AD60]"
+                >
+                  <span class="flex items-center gap-3">
+                    <i data-lucide="clapperboard" class="h-4 w-4"></i>
+                    Movies
+                  </span>
+                  <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+                </a>
+
+                <a
+                  href="favorites.html"
+                  class="flex items-center justify-between gap-3 rounded-lg border border-[#343840] bg-[#121418] px-4 py-3 text-sm text-[#D5D7DC] transition hover:border-[#8D7547] hover:text-[#D6AD60]"
+                >
+                  <span class="flex items-center gap-3">
+                    <i data-lucide="heart" class="h-4 w-4"></i>
+                    Favorites
+                  </span>
+                  <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+                </a>
+
+                <a
+                  href="settings.html"
+                  class="flex items-center justify-between gap-3 rounded-lg border border-[#343840] bg-[#121418] px-4 py-3 text-sm text-[#D5D7DC] transition hover:border-[#8D7547] hover:text-[#D6AD60]"
+                >
+                  <span class="flex items-center gap-3">
+                    <i data-lucide="settings-2" class="h-4 w-4"></i>
+                    Settings
+                  </span>
+                  <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+                </a>
+              </div>
+            </article>
           </div>
-        </div>
+        </section>
+
+        <!-- Footer -->
+        <footer
+          class="mt-10 border-t border-[#343840] pt-5 text-xs text-[#777D87]"
+        >
+          <p>MOVIEDB <span class="mx-1">•</span> Your collection, organized.</p>
+        </footer>
       </main>
     </div>
 
+    <!-- Logout Confirmation Modal -->
     <div
       id="logoutModal"
-      class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-100"
+      class="fixed inset-0 z-100 hidden items-center justify-center bg-black/70 p-4"
     >
-      <div class="bg-white rounded-3xl p-8 w-90 max-w-md shadow-2xl">
-        <h2 class="text-3xl font-bold text-slate-800 mb-3">Sign Out</h2>
+      <div
+        class="w-full max-w-md rounded-xl border border-[#343840] bg-[#1C2027] p-6 sm:p-8"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="logoutModalTitle"
+      >
+        <div
+          class="mb-5 flex h-11 w-11 items-center justify-center rounded-full border border-[#51462F] bg-[#302B22] text-[#D6AD60]"
+        >
+          <i data-lucide="log-out" class="h-5 w-5"></i>
+        </div>
 
-        <p class="text-slate-600 mb-8">
+        <h2 id="logoutModalTitle" class="text-2xl font-semibold">Sign out?</h2>
+
+        <p class="mt-3 text-sm leading-6 text-[#A6AAB3]">
           Are you sure you want to sign out of your account?
         </p>
 
-        <div class="flex justify-end gap-4">
+        <div class="mt-8 flex justify-end gap-3">
           <button
             id="cancelLogout"
-            class="px-6 py-3 rounded-xl bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold cursor-pointer transition"
+            type="button"
+            class="rounded-lg border border-[#343840] px-5 py-2.5 text-sm font-medium text-[#D5D7DC] transition hover:bg-[#292D35]"
           >
             Cancel
           </button>
 
           <button
             id="confirmLogout"
-            class="px-6 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold cursor-pointer transition"
+            type="button"
+            class="rounded-lg bg-[#D6AD60] px-5 py-2.5 text-sm font-semibold text-[#121418] transition hover:bg-[#E3BE76]"
           >
             Sign Out
           </button>
         </div>
       </div>
     </div>
-
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="/Script/dashboard.js"></script>
   </body>
 </html>
