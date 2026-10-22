@@ -40,14 +40,17 @@ const username =
     ? loggedInUser.username.trim()
     : "";
 
+const formattedUsername = username
+  ? username.charAt(0).toUpperCase() + username.slice(1)
+  : "User";
+
 if (usernameDisplay) {
-  usernameDisplay.textContent = username || "User";
+  usernameDisplay.textContent = formattedUsername;
 }
 
 if (userAvatar) {
-  userAvatar.textContent = username ? username.charAt(0).toUpperCase() : "U";
+  userAvatar.textContent = formattedUsername.charAt(0);
 }
-
 // ========================================
 // LOAD SELECTED MOVIE
 // ========================================
