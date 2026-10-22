@@ -3,137 +3,214 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121418" />
     <title>Login | MovieDB</title>
     <link href="/src/output.css" rel="stylesheet" />
   </head>
 
-  <body class="bg-slate-100 min-h-screen flex items-center justify-center p-6">
-    <div
-      class="w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2"
-    >
+  <body class="min-h-screen bg-[#121418] text-[#F1F1F1]">
+    <!-- Main Login Layout -->
+    <main class="flex min-h-screen items-center justify-center px-5 py-10">
       <div
-        class="hidden md:flex bg-blue-950 text-white p-10 flex-col justify-center"
+        class="grid w-full max-w-5xl overflow-hidden rounded-lg border border-[#343840] bg-[#1C2027] md:grid-cols-2"
       >
-        <h1 class="text-5xl font-bold mb-4">MovieDB</h1>
+        <!-- Left Information Panel -->
+        <section
+          class="hidden border-r border-[#343840] p-10 md:flex md:flex-col md:justify-between lg:p-12"
+        >
+          <a href="../index.html" class="w-fit text-xl font-bold tracking-wide">
+            MOVIE<span class="text-[#D6AD60]">DB</span>
+          </a>
 
-        <p class="text-blue-200 text-lg leading-8">
-          Welcome back! Log in to continue managing your movie collection.
-        </p>
+          <div class="my-12">
+            <p
+              class="mb-4 text-sm font-medium uppercase tracking-widest text-[#D6AD60]"
+            >
+              Welcome back
+            </p>
 
-        <div class="mt-10 space-y-5">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl"></span>
-            <p>Manage your movies</p>
-          </div>
+            <h1 class="text-4xl font-bold leading-tight lg:text-5xl">
+              Your movies.
+              <span class="text-[#D6AD60]">Your collection.</span>
+            </h1>
 
-          <div class="flex items-center gap-3">
-            <span class="text-2xl"></span>
-            <p>Access your favorites</p>
-          </div>
+            <p class="mt-5 max-w-sm leading-7 text-[#A6AAB3]">
+              Sign in to explore movies, revisit your favorites, and continue
+              discovering great stories.
+            </p>
 
-          <div class="flex items-center gap-3">
-            <span class="text-2xl"></span>
-            <p>Search instantly</p>
-          </div>
-        </div>
-      </div>
+            <div class="mt-9 space-y-5 text-sm text-[#D4D5D9]">
+              <div class="flex items-center gap-3">
+                <i
+                  data-lucide="clapperboard"
+                  class="h-5 w-5 text-[#D6AD60]"
+                ></i>
+                <span>Manage your movie collection</span>
+              </div>
 
-      <div class="p-10">
-        <h2 class="text-3xl font-bold text-slate-800 mb-2">Welcome Back</h2>
+              <div class="flex items-center gap-3">
+                <i data-lucide="heart" class="h-5 w-5 text-[#D6AD60]"></i>
+                <span>Keep track of your favorites</span>
+              </div>
 
-        <p class="text-slate-500 mb-8">Login to your account.</p>
-
-        <form id="loginForm" class="space-y-6">
-          <div>
-            <label class="block mb-2 font-semibold text-slate-700">
-              Email
-            </label>
-
-            <input
-              type="email"
-              id="loginEmail"
-              class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-900"
-              placeholder="Enter your email"
-            />
-          </div>
-
-          <div>
-            <label class="block mb-2 font-semibold text-slate-700">
-              Password
-            </label>
-
-            <input
-              type="password"
-              id="loginPassword"
-              class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-900"
-              placeholder="Enter your password"
-            />
-            <div class="flex justify-end mt-2">
-              <button
-                type="button"
-                id="forgotPasswordBtn"
-                class="text-sm text-blue-900 font-semibold hover:underline cursor-pointer"
-              >
-                Forgot Password?
-              </button>
+              <div class="flex items-center gap-3">
+                <i data-lucide="play-circle" class="h-5 w-5 text-[#D6AD60]"></i>
+                <span>Discover movie trailers</span>
+              </div>
             </div>
           </div>
 
-          <p id="loginMessage" class="text-red-500 text-sm"></p>
+          <p class="text-xs text-[#6B707A]">
+            A personal space for every movie lover.
+          </p>
+        </section>
 
-          <button
-            type="submit"
-            class="w-full bg-blue-950 text-white py-3 rounded-xl hover:bg-blue-900 transition"
-          >
-            Login
-          </button>
-        </form>
-
-        <p class="mt-8 text-center text-slate-600">
-          Don't have an account?
-
+        <!-- Login Form -->
+        <section class="p-6 sm:p-10 lg:p-12">
           <a
-            href="signup.html"
-            class="text-blue-900 font-semibold hover:underline"
+            href="../index.html"
+            class="mb-10 inline-block text-lg font-bold md:hidden"
           >
-            Sign Up
+            MOVIE<span class="text-[#D6AD60]">DB</span>
           </a>
-        </p>
-      </div>
-    </div>
 
+          <div class="mb-8">
+            <p class="mb-3 text-sm font-medium text-[#D6AD60]">YOUR ACCOUNT</p>
+
+            <h2 class="text-3xl font-bold">Welcome back</h2>
+
+            <p class="mt-3 text-sm leading-6 text-[#A6AAB3]">
+              Enter your details to sign in to your account.
+            </p>
+          </div>
+
+          <form id="loginForm" class="space-y-5">
+            <div>
+              <label for="loginEmail" class="mb-2 block text-sm font-medium">
+                Email address
+              </label>
+
+              <div class="relative">
+                <i
+                  data-lucide="mail"
+                  class="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-[#8B909A]"
+                ></i>
+
+                <input
+                  type="email"
+                  id="loginEmail"
+                  autocomplete="email"
+                  placeholder="you@example.com"
+                  class="w-full rounded-md border border-[#343840] bg-[#121418] py-3 pl-11 pr-4 text-sm text-[#F1F1F1] outline-none placeholder:text-[#6B707A] focus:border-[#D6AD60]"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="loginPassword" class="mb-2 block text-sm font-medium">
+                Password
+              </label>
+
+              <div class="relative">
+                <i
+                  data-lucide="lock-keyhole"
+                  class="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-[#8B909A]"
+                ></i>
+
+                <input
+                  type="password"
+                  id="loginPassword"
+                  autocomplete="current-password"
+                  placeholder="Enter your password"
+                  class="w-full rounded-md border border-[#343840] bg-[#121418] py-3 pl-11 pr-4 text-sm text-[#F1F1F1] outline-none placeholder:text-[#6B707A] focus:border-[#D6AD60]"
+                />
+              </div>
+
+              <div class="mt-3 flex justify-end">
+                <button
+                  type="button"
+                  id="forgotPasswordBtn"
+                  class="text-sm font-medium text-[#D6AD60] hover:text-[#E5C47F]"
+                >
+                  Forgot password?
+                </button>
+              </div>
+            </div>
+
+            <p
+              id="loginMessage"
+              role="status"
+              aria-live="polite"
+              class="text-sm text-red-400"
+            ></p>
+
+            <button
+              type="submit"
+              class="w-full rounded-md bg-[#D6AD60] px-4 py-3 font-semibold text-[#121418] transition hover:bg-[#E5C47F]"
+            >
+              Sign In
+            </button>
+          </form>
+
+          <p class="mt-8 text-center text-sm text-[#A6AAB3]">
+            Don't have an account?
+            <a
+              href="signup.html"
+              class="ml-1 font-semibold text-[#D6AD60] hover:text-[#E5C47F]"
+            >
+              Sign up
+            </a>
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <!-- Forgot Password Modal -->
     <div
       id="forgotPasswordModal"
-      class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-100"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 px-4 py-6"
     >
-      <div class="bg-white rounded-3xl p-8 w-105 shadow-2xl">
-        <!-- Step 1: Email -->
-
+      <div
+        class="w-full max-w-md rounded-lg border border-[#343840] bg-[#1C2027] p-6 sm:p-8"
+      >
+        <!-- Email Step -->
         <div id="forgotEmailStep">
-          <h2 class="text-3xl font-bold text-slate-800 mb-2">
-            Forgot Password?
-          </h2>
+          <div
+            class="mb-5 flex h-11 w-11 items-center justify-center rounded-md border border-[#343840]"
+          >
+            <i data-lucide="key-round" class="h-5 w-5 text-[#D6AD60]"></i>
+          </div>
 
-          <p class="text-slate-500 mb-6">
-            Enter your email address and we'll let you create a new password.
+          <h2 class="text-2xl font-bold">Forgot password?</h2>
+
+          <p class="mt-3 text-sm leading-6 text-[#A6AAB3]">
+            Enter your registered email address to find your account and reset
+            your password.
           </p>
 
-          <label class="block mb-2 font-semibold text-slate-700"> Email </label>
+          <label for="forgotEmail" class="mb-2 mt-6 block text-sm font-medium">
+            Email address
+          </label>
 
           <input
             type="email"
             id="forgotEmail"
-            placeholder="Enter your email"
-            class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-900"
+            autocomplete="email"
+            placeholder="you@example.com"
+            class="w-full rounded-md border border-[#343840] bg-[#121418] px-4 py-3 text-sm outline-none placeholder:text-[#6B707A] focus:border-[#D6AD60]"
           />
 
-          <p id="forgotEmailMessage" class="text-sm mt-3"></p>
+          <p
+            id="forgotEmailMessage"
+            aria-live="polite"
+            class="mt-3 text-sm"
+          ></p>
 
-          <div class="flex justify-end gap-3 mt-6">
+          <div class="mt-6 flex justify-end gap-3">
             <button
               type="button"
               id="cancelForgotPassword"
-              class="px-5 py-3 rounded-xl bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold cursor-pointer"
+              class="rounded-md border border-[#343840] px-4 py-2.5 text-sm font-medium hover:bg-[#282D36]"
             >
               Cancel
             </button>
@@ -141,49 +218,68 @@
             <button
               type="button"
               id="findAccountBtn"
-              class="px-5 py-3 rounded-xl bg-blue-950 hover:bg-blue-900 text-white font-semibold cursor-pointer"
+              class="rounded-md bg-[#D6AD60] px-4 py-2.5 text-sm font-semibold text-[#121418] hover:bg-[#E5C47F]"
             >
               Continue
             </button>
           </div>
         </div>
 
+        <!-- New Password Step -->
         <div id="forgotNewPasswordStep" class="hidden">
-          <h2 class="text-3xl font-bold text-slate-800 mb-2">Reset Password</h2>
+          <div
+            class="mb-5 flex h-11 w-11 items-center justify-center rounded-md border border-[#343840]"
+          >
+            <i data-lucide="shield-check" class="h-5 w-5 text-[#D6AD60]"></i>
+          </div>
 
-          <p class="text-slate-500 mb-6">
+          <h2 class="text-2xl font-bold">Reset password</h2>
+
+          <p class="mt-3 text-sm leading-6 text-[#A6AAB3]">
             Create a new password for your account.
           </p>
 
-          <label class="block mb-2 font-semibold text-slate-700">
-            New Password
+          <label
+            for="forgotNewPassword"
+            class="mb-2 mt-6 block text-sm font-medium"
+          >
+            New password
           </label>
 
           <input
             type="password"
             id="forgotNewPassword"
+            autocomplete="new-password"
             placeholder="Enter new password"
-            class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-900 mb-4"
+            class="mb-4 w-full rounded-md border border-[#343840] bg-[#121418] px-4 py-3 text-sm outline-none placeholder:text-[#6B707A] focus:border-[#D6AD60]"
           />
 
-          <label class="block mb-2 font-semibold text-slate-700">
-            Confirm Password
+          <label
+            for="forgotConfirmPassword"
+            class="mb-2 block text-sm font-medium"
+          >
+            Confirm password
           </label>
 
           <input
             type="password"
             id="forgotConfirmPassword"
+            autocomplete="new-password"
             placeholder="Confirm new password"
-            class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-900"
+            class="w-full rounded-md border border-[#343840] bg-[#121418] px-4 py-3 text-sm outline-none placeholder:text-[#6B707A] focus:border-[#D6AD60]"
           />
 
-          <p id="resetPasswordMessage" class="text-sm mt-3"></p>
+          <p
+            id="resetPasswordMessage"
+            aria-live="polite"
+            class="mt-3 text-sm"
+          ></p>
 
-          <div class="flex justify-end gap-3 mt-6">
+          <div class="mt-6 flex justify-end gap-3">
             <button
               type="button"
               id="cancelResetPassword"
-              class="px-5 py-3 rounded-xl bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold cursor-pointer"
+              class="rounded-md border border-[#343840] px-4 py-2.5 text-sm font-medium hover:bg-[#282D36]"
             >
               Cancel
             </button>
@@ -191,15 +287,15 @@
             <button
               type="button"
               id="resetPasswordBtn"
-              class="px-5 py-3 rounded-xl bg-blue-950 hover:bg-blue-900 text-white font-semibold cursor-pointer"
+              class="rounded-md bg-[#D6AD60] px-4 py-2.5 text-sm font-semibold text-[#121418] hover:bg-[#E5C47F]"
             >
-              Reset Password
+              Reset password
             </button>
           </div>
         </div>
       </div>
     </div>
-
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="/Script/login.js"></script>
   </body>
 </html>

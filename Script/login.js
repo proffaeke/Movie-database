@@ -1,41 +1,53 @@
+// Initialize Lucide icons
+if (window.lucide) {
+  lucide.createIcons();
+}
+
+// Login elements
 const loginForm = document.getElementById("loginForm");
 const loginEmail = document.getElementById("loginEmail");
 const loginPassword = document.getElementById("loginPassword");
 const loginMessage = document.getElementById("loginMessage");
 
+// Login form
 loginForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const email = loginEmail.value.trim().toLowerCase();
   const password = loginPassword.value;
 
+  loginMessage.className = "text-sm";
+
   if (email === "" || password === "") {
     loginMessage.textContent = "Please fill in all fields.";
+    loginMessage.classList.add("text-red-400");
     return;
   }
+
   const users = JSON.parse(localStorage.getItem("users")) || [];
 
   const foundUser = users.find(function (user) {
-    return user.email === email && user.password === password;
+    return user.email.toLowerCase() === email && user.password === password;
   });
 
   if (!foundUser) {
     loginMessage.textContent = "Invalid email or password.";
+    loginMessage.classList.add("text-red-400");
     return;
   }
 
   localStorage.setItem("loggedInUser", JSON.stringify(foundUser));
 
-  loginMessage.classList.remove("text-red-500");
-  loginMessage.classList.add("text-green-600");
   loginMessage.textContent =
     "Login successful! Redirecting to the dashboard...";
+  loginMessage.classList.add("text-green-400");
 
   setTimeout(function () {
     window.location.href = "dashboard.html";
-  }, 2000);
+  }, 1500);
 });
 
+// Forgot password elements
 const forgotPasswordBtn = document.getElementById("forgotPasswordBtn");
 const forgotPasswordModal = document.getElementById("forgotPasswordModal");
 const cancelForgotPassword = document.getElementById("cancelForgotPassword");
@@ -50,94 +62,108 @@ const resetPasswordBtn = document.getElementById("resetPasswordBtn");
 const cancelResetPassword = document.getElementById("cancelResetPassword");
 const resetPasswordMessage = document.getElementById("resetPasswordMessage");
 
-forgotPasswordBtn.addEventListener("click", function () {
-  forgotPasswordModal.classList.remove("hidden");
-});
-
-cancelForgotPassword.addEventListener("click", function () {
-  forgotPasswordModal.classList.add("hidden");
-});
-
-cancelResetPassword.addEventListener("click", function () {
-  forgotPasswordModal.classList.add("hidden");
-});
-
 let resetUser = null;
 
+// Open password reset modal
+forgotPasswordBtn.addEventListener("click", function () {
+  forgotPasswordModal.classList.remove("hidden");
+  forgotPasswordModal.classList.add("flex");
+});
+
+// Close modal and reset its steps
+function closeForgotPasswordModal() {
+  forgotPasswordModal.classList.add("hidden");
+  forgotPasswordModal.classList.remove("flex");
+
+  forgotEmailStep.classList.remove("hidden");
+  forgotNewPasswordStep.classList.add("hidden");
+
+  forgotEmail.value = "";
+  forgotNewPassword.value = "";
+  forgotConfirmPassword.value = "";
+
+  forgotEmailMessage.textContent = "";
+  resetPasswordMessage.textContent = "";
+
+  resetUser = null;
+}
+
+cancelForgotPassword.addEventListener("click", closeForgotPasswordModal);
+
+cancelResetPassword.addEventListener("click", closeForgotPasswordModal);
+
+// Find account
 findAccountBtn.addEventListener("click", function () {
-  const email = forgotEmail.value.trim();
+  const email = forgotEmail.value.trim().toLowerCase();
+
+  forgotEmailMessage.className = "mt-3 text-sm";
 
   if (email === "") {
     forgotEmailMessage.textContent = "Please enter your email.";
-
-    forgotEmailMessage.className = "text-sm mt-3 text-red-500";
-
+    forgotEmailMessage.classList.add("text-red-400");
     return;
   }
 
   const users = JSON.parse(localStorage.getItem("users")) || [];
 
   const user = users.find(function (user) {
-    return user.email === email;
+    return user.email.toLowerCase() === email;
   });
 
   if (!user) {
     forgotEmailMessage.textContent = "No account was found with this email.";
-
-    forgotEmailMessage.className = "text-sm mt-3 text-red-500";
-
+    forgotEmailMessage.classList.add("text-red-400");
     return;
   }
 
   resetUser = user;
 
   forgotEmailStep.classList.add("hidden");
-
   forgotNewPasswordStep.classList.remove("hidden");
 });
 
+// Reset password
 resetPasswordBtn.addEventListener("click", function () {
   const newPassword = forgotNewPassword.value;
-
   const confirmPassword = forgotConfirmPassword.value;
 
-  if (newPassword === "" || confirmPassword === "") {
+  resetPasswordMessage.className = "mt-3 text-sm";
+
+  if (!newPassword || !confirmPassword) {
     resetPasswordMessage.textContent = "Please fill in both password fields.";
-
-    resetPasswordMessage.className = "text-sm mt-3 text-red-500";
-
+    resetPasswordMessage.classList.add("text-red-400");
     return;
   }
 
   if (newPassword.length < 8) {
     resetPasswordMessage.textContent =
       "Password must be at least 8 characters.";
-
-    resetPasswordMessage.className = "text-sm mt-3 text-red-500";
-
+    resetPasswordMessage.classList.add("text-red-400");
     return;
   }
 
   if (newPassword !== confirmPassword) {
     resetPasswordMessage.textContent = "Passwords do not match.";
-
-    resetPasswordMessage.className = "text-sm mt-3 text-red-500";
-
+    resetPasswordMessage.classList.add("text-red-400");
     return;
   }
 
-  let users = JSON.parse(localStorage.getItem("users")) || [];
+  if (!resetUser) {
+    resetPasswordMessage.textContent = "Please find your account again.";
+    resetPasswordMessage.classList.add("text-red-400");
+    return;
+  }
+
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
   const userIndex = users.findIndex(function (user) {
-    return user.email === resetUser.email;
+    return user.email.toLowerCase() === resetUser.email.toLowerCase();
   });
 
   if (userIndex === -1) {
     resetPasswordMessage.textContent =
       "Something went wrong. Please try again.";
-
-    resetPasswordMessage.className = "text-sm mt-3 text-red-500";
-
+    resetPasswordMessage.classList.add("text-red-400");
     return;
   }
 
@@ -146,24 +172,9 @@ resetPasswordBtn.addEventListener("click", function () {
   localStorage.setItem("users", JSON.stringify(users));
 
   resetPasswordMessage.textContent = "Password reset successfully!";
-
-  resetPasswordMessage.className = "text-sm mt-3 text-green-600";
-
-  forgotEmail.value = "";
-
-  forgotNewPassword.value = "";
-
-  forgotConfirmPassword.value = "";
+  resetPasswordMessage.classList.add("text-green-400");
 
   setTimeout(function () {
-    forgotPasswordModal.classList.add("hidden");
-
-    forgotEmailStep.classList.remove("hidden");
-
-    forgotNewPasswordStep.classList.add("hidden");
-
-    forgotEmailMessage.textContent = "";
-
-    resetPasswordMessage.textContent = "";
+    closeForgotPasswordModal();
   }, 1500);
 });

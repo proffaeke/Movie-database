@@ -1,3 +1,9 @@
+// Initialize Lucide icons
+if (window.lucide) {
+  lucide.createIcons();
+}
+
+// Get sign-up form elements
 const signupForm = document.getElementById("signupForm");
 
 const username = document.getElementById("username");
@@ -7,6 +13,25 @@ const confirmPassword = document.getElementById("confirmPassword");
 
 const message = document.getElementById("message");
 
+// Display form messages consistently
+function showMessage(text, type) {
+  message.textContent = text;
+
+  message.classList.remove(
+    "text-red-500",
+    "text-green-600",
+    "text-red-400",
+    "text-green-400",
+  );
+
+  if (type === "success") {
+    message.classList.add("text-green-400");
+  } else {
+    message.classList.add("text-red-400");
+  }
+}
+
+// Handle account registration
 signupForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -15,53 +40,54 @@ signupForm.addEventListener("submit", function (event) {
   const newPassword = password.value;
   const newConfirmPassword = confirmPassword.value;
 
+  // Check required fields
   if (
     newUsername === "" ||
     newEmail === "" ||
     newPassword === "" ||
     newConfirmPassword === ""
   ) {
-    message.textContent = "Please fill in all fields.";
-
-    message.classList.remove("text-green-600");
-    message.classList.add("text-red-500");
-
+    showMessage("Please fill in all fields.", "error");
     return;
   }
 
+  // Check password confirmation
   if (newPassword !== newConfirmPassword) {
-    message.textContent = "Passwords do not match.";
-
-    message.classList.remove("text-green-600");
-    message.classList.add("text-red-500");
-
+    showMessage("Passwords do not match.", "error");
     return;
   }
 
+  // Check password length
   if (newPassword.length < 8) {
-    message.textContent = "Password must be at least 8 characters.";
-
-    message.classList.remove("text-green-600");
-    message.classList.add("text-red-500");
-
+    showMessage("Password must be at least 8 characters.", "error");
     return;
   }
 
-  let users = JSON.parse(localStorage.getItem("users")) || [];
+  // Get existing users
+  let users = [];
 
-  const emailExist = users.some(function (user) {
-    return user.email.toLowerCase() === newEmail;
+  try {
+    users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (!Array.isArray(users)) {
+      users = [];
+    }
+  } catch (error) {
+    showMessage("Unable to read saved accounts. Please try again.", "error");
+    return;
+  }
+
+  // Check for an existing email
+  const emailExists = users.some(function (user) {
+    return user.email?.toLowerCase() === newEmail;
   });
 
-  if (emailExist) {
-    message.textContent = "An account with this email already exists.";
-
-    message.classList.remove("text-green-600");
-    message.classList.add("text-red-500");
-
+  if (emailExists) {
+    showMessage("An account with this email already exists.", "error");
     return;
   }
 
+  // Create the new account
   const user = {
     username: newUsername,
     email: newEmail,
@@ -70,17 +96,20 @@ signupForm.addEventListener("submit", function (event) {
 
   users.push(user);
 
-  localStorage.setItem("users", JSON.stringify(users));
+  try {
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+  } catch (error) {
+    showMessage("Unable to save your account. Please try again.", "error");
+    return;
+  }
 
-  localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-  message.textContent = "Account created successfully!";
-
-  message.classList.remove("text-red-500");
-  message.classList.add("text-green-600");
+  // Show success message
+  showMessage("Account created successfully!", "success");
 
   signupForm.reset();
 
+  // Redirect to the login page
   setTimeout(function () {
     window.location.href = "login.html";
   }, 1500);
