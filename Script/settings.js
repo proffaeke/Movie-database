@@ -130,19 +130,21 @@ const confirmLogout = document.getElementById("confirmLogout");
 
 logoutBtn.addEventListener("click", function () {
   logoutModal.classList.remove("hidden");
+  logoutModal.classList.add("flex");
 });
 
 settingsLogoutBtn.addEventListener("click", function () {
   logoutModal.classList.remove("hidden");
+  logoutModal.classList.add("flex");
 });
 
 cancelLogout.addEventListener("click", function () {
   logoutModal.classList.add("hidden");
+  logoutModal.classList.remove("flex");
 });
 
 confirmLogout.addEventListener("click", function () {
   localStorage.removeItem("loggedInUser");
-
   window.location.href = "login.html";
 });
 
