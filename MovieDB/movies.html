@@ -51,7 +51,7 @@
         <a href="../index.html" class="text-2xl font-bold tracking-wide">
           MOVIE<span class="text-[#D6AD60]">DB</span>
         </a>
-        <div class="hidden text-sm text-[#A6AAB3] md:block">
+        <div class="text-sm text-[#A6AAB3] md:block">
           Your collection, your way.
         </div>
       </div>
@@ -94,7 +94,7 @@
       <button
         id="logoutBtn"
         type="button"
-        class="absolute bottom-6 left-3 right-3 flex items-center gap-3 rounded-xl px-4 py-3 text-[#A6AAB3] transition hover:bg-red-500/10 hover:text-red-400"
+        class="absolute bottom-3 left-3 right-3 flex items-center gap-3 rounded-xl px-4 py-3 text-[#A6AAB3] transition hover:bg-red-500/10 hover:text-red-400"
       >
         <i data-lucide="log-out" class="h-5 w-5"></i>
         <span>Sign Out</span>
@@ -205,12 +205,18 @@
           </p>
         </div>
       </section>
+      <!-- Footer -->
+      <footer
+        class="mt-10 border-t border-[#343840] pt-5 text-xs text-[#777D87]"
+      >
+        <p>MOVIEDB <span class="mx-1">•</span> Your collection, organized.</p>
+      </footer>
     </main>
 
     <!-- Add / Edit Movie Modal -->
     <div
       id="movieModal"
-      class="fixed inset-0 z-[100] hidden items-center justify-center overflow-y-auto bg-black/75 p-4 backdrop-blur-sm"
+      class="fixed inset-0 z-100 hidden items-center justify-center overflow-y-auto bg-black/75 p-4 backdrop-blur-sm"
     >
       <div
         class="my-auto w-full max-w-md rounded-2xl border border-[#343840] bg-[#1C2027] p-5 shadow-2xl sm:p-7"
@@ -307,13 +313,13 @@
     <!-- Delete Confirmation Modal -->
     <div
       id="deleteModal"
-      class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
+      class="fixed inset-0 z-110 hidden items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
     >
       <div
         class="w-full max-w-md rounded-2xl border border-[#343840] bg-[#1C2027] p-6 shadow-2xl"
       >
         <div
-          class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-400"
+          class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D6AD60]/10 text-[#D6AD60]"
         >
           <i data-lucide="trash-2" class="h-6 w-6"></i>
         </div>
@@ -348,7 +354,7 @@
     <!-- Sign Out Confirmation Modal -->
     <div
       id="logoutModal"
-      class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
+      class="fixed inset-0 z-100 hidden items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
     >
       <div
         class="w-full max-w-md rounded-2xl border border-[#343840] bg-[#1C2027] p-6 shadow-2xl"

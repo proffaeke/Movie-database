@@ -64,7 +64,7 @@
         </a>
       </nav>
 
-      <div class="border-t border-[#343840] p-4">
+      <div class="p-3">
         <button
           id="logoutBtn"
           type="button"
@@ -88,7 +88,7 @@
           aria-label="Open navigation menu"
           aria-controls="sidebar"
           aria-expanded="false"
-          class="rounded-lg p-2 text-[#F1F1F1] transition hover:bg-[#272C35] md:hidden"
+          class="rounded-lg p-2 text-[#D6AD60] transition hover:bg-[#343840] md:hidden"
         >
           <i data-lucide="menu" class="h-6 w-6"></i>
         </button>
@@ -153,29 +153,33 @@
             <p>Loading movie details...</p>
           </div>
         </section>
+
+        <!-- Footer -->
+        <footer
+          class="mt-10 border-t border-[#343840] pt-5 text-xs text-[#777D87]"
+        >
+          <p>MOVIEDB <span class="mx-1">•</span> Your collection, organized.</p>
+        </footer>
       </main>
     </div>
 
     <!-- Logout Confirmation Modal -->
     <div
       id="logoutModal"
-      class="fixed inset-0 z-100 hidden items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="logoutModalTitle"
+      class="fixed inset-0 z-100 hidden items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
     >
       <div
         class="w-full max-w-md rounded-2xl border border-[#343840] bg-[#1C2027] p-6 shadow-2xl"
       >
         <div
-          class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-400"
+          class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D6AD60]/10 text-[#D6AD60]"
         >
           <i data-lucide="log-out" class="h-6 w-6"></i>
         </div>
 
-        <h2 id="logoutModalTitle" class="mb-2 text-2xl font-bold">Sign Out</h2>
+        <h2 class="mb-3 text-2xl font-bold">Sign Out</h2>
 
-        <p class="mb-7 text-sm leading-6 text-[#A6AAB3]">
+        <p class="mb-8 text-sm leading-6 text-[#A6AAB3]">
           Are you sure you want to sign out of your account?
         </p>
 
@@ -183,7 +187,7 @@
           <button
             id="cancelLogout"
             type="button"
-            class="rounded-xl border border-[#343840] px-5 py-3 text-sm font-semibold transition hover:bg-[#272C35]"
+            class="rounded-xl border border-[#343840] px-5 py-3 font-semibold text-[#D9DCE2] transition hover:bg-[#343840]"
           >
             Cancel
           </button>
@@ -191,7 +195,7 @@
           <button
             id="confirmLogout"
             type="button"
-            class="rounded-xl bg-red-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-600"
+            class="rounded-xl bg-red-500 px-5 py-3 font-semibold text-white transition hover:bg-red-600"
           >
             Sign Out
           </button>

@@ -1,3 +1,5 @@
+lucide.createIcons();
+
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
 if (!loggedInUser) {

@@ -2,172 +2,248 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Favorites | MovieDB</title>
-
     <link href="/src/output.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
   </head>
 
-  <body class="bg-slate-100 min-h-screen">
+  <body class="min-h-screen bg-[#121418] text-[#F1F1F1]">
+    <!-- Mobile Sidebar Overlay -->
+    <div
+      id="sidebarOverlay"
+      class="fixed inset-0 z-40 hidden bg-black/60 md:hidden"
+    ></div>
+
+    <!-- Sidebar -->
     <aside
       id="sidebar"
-      class="fixed left-0 top-0 w-50 h-screen bg-blue-950 text-white z-50 -translate-x-full md:translate-x-0 md:transition-transform duration-300"
+      class="fixed left-0 top-0 z-50 flex h-screen w-50 -translate-x-full flex-col border-r border-[#343840] bg-[#1C2027] transition-transform duration-300 md:translate-x-0"
     >
-      <div class="px-4 pt-4">
-        <h1 class="text-3xl font-bold">MovieDB</h1>
+      <div class="border-b border-[#343840] px-5 py-5">
+        <a href="../index.html" class="text-2xl font-bold tracking-wide">
+          MOVIE<span class="text-[#D6AD60]">DB</span>
+        </a>
+
+        <p class="mt-1 text-sm tracking-wide text-[#A6AAB3] md:block">
+          The movies you love
+        </p>
       </div>
-      <nav class="mt-10 px-2 space-y-3">
+
+      <nav class="flex-1 space-y-2 px-4 py-8">
         <a
           href="dashboard.html"
-          class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+          class="flex items-center gap-3 rounded-xl px-4 py-3 text-[#A6AAB3] transition hover:bg-[#343840] hover:text-white"
         >
-          Dashboard
+          <i data-lucide="layout-dashboard" class="h-5 w-5"></i>
+          <span>Dashboard</span>
         </a>
 
         <a
           href="movies.html"
-          class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+          class="flex items-center gap-3 rounded-xl px-4 py-3 text-[#A6AAB3] transition hover:bg-[#343840] hover:text-white"
         >
-          Movies
+          <i data-lucide="clapperboard" class="h-5 w-5"></i>
+          <span>Movies</span>
         </a>
 
         <a
           href="favorites.html"
-          class="block p-3 rounded-lg bg-white text-blue-950 font-semibold"
+          aria-current="page"
+          class="flex items-center gap-3 rounded-xl border border-[#D6AD60]/20 bg-[#D6AD60]/10 px-4 py-3 font-semibold text-[#D6AD60]"
         >
-          Favorites
+          <i data-lucide="heart" class="h-5 w-5"></i>
+          <span>Favorites</span>
         </a>
 
         <a
           href="settings.html"
-          class="block p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
+          class="flex items-center gap-3 rounded-xl px-4 py-3 text-[#A6AAB3] transition hover:bg-[#343840] hover:text-white"
         >
-          Settings
+          <i data-lucide="settings" class="h-5 w-5"></i>
+          <span>Settings</span>
         </a>
       </nav>
 
-      <button
-        id="logoutBtn"
-        class="absolute bottom-8 left-2 right-2 text-left p-3 rounded-lg hover:bg-white hover:text-blue-950 transition"
-      >
-        Sign Out
-      </button>
-    </aside>
-    <div
-      id="sidebarOverlay"
-      class="hidden fixed inset-0 bg-black/50 z-40 md:hidden"
-    ></div>
-
-    <nav
-      class="fixed top-0 left-0 md:left-50 right-0 h-16 bg-blue-950 text-white shadow-lg z-50 flex items-center justify-end px-6"
-    >
-      <button
-        id="menuBtn"
-        class="md:hidden absolute left-4 text-white text-2xl"
-      >
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <div class="flex items-center gap-3">
-        <span id="usernameDisplay" class="text-blue-100 font-semibold">
-          User
-        </span>
-        <div
-          id="userAvatar"
-          class="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center font-bold text-white"
+      <div class="p-3">
+        <button
+          id="logoutBtn"
+          type="button"
+          class="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-[#A6AAB3] transition hover:bg-red-500/10 hover:text-red-400"
         >
-          U
-        </div>
+          <i data-lucide="log-out" class="h-5 w-5"></i>
+          <span>Sign Out</span>
+        </button>
       </div>
-    </nav>
+    </aside>
 
-    <main class="ml-0 md:ml-50 pt-24 px-8 pb-10">
-      <div class="mb-8">
-        <h1 class="text-2xl sm:text-4xl font-bold text-slate-800">
-          My Favorites
-        </h1>
-
-        <p class="text-slate-500 mt-2">
-          Movies you've added to your favorite collection.
-        </p>
-      </div>
-
-      <div
-        class="bg-white rounded-2xl shadow-lg p-5 mb-8 flex items-center justify-between"
+    <!-- Main Area -->
+    <div class="min-h-screen md:ml-64">
+      <!-- Top Navigation -->
+      <header
+        class="fixed left-0 right-0 top-0 z-40 flex h-16 items-center justify-between border-b border-[#343840] bg-[#1C2027] px-5 md:left-50 md:justify-end md:px-8"
       >
-        <div>
-          <h2 class="text-xl font-bold text-slate-800">Favorite Movies</h2>
+        <button
+          id="menuBtn"
+          type="button"
+          aria-label="Open navigation menu"
+          class="rounded-lg p-2 text-[#D6AD60] transition hover:bg-[#343840] md:hidden"
+        >
+          <i data-lucide="menu" class="h-6 w-6"></i>
+        </button>
+        <a
+          href="dashboard.html"
+          class="text-lg font-semibold tracking-wide md:hidden"
+        >
+          MOVIE<span class="text-[#D6AD60]">DB</span>
+        </a>
 
-          <p class="text-slate-500 text-sm mt-1">
-            Your favorite movie collection
+        <div class="flex items-center gap-3">
+          <span
+            id="usernameDisplay"
+            class="max-w-36 truncate text-sm font-medium text-[#D5D7DC]"
+          >
+            User
+          </span>
+
+          <div
+            id="userAvatar"
+            class="flex h-10 w-10 items-center justify-center rounded-full border border-[#D6AD60]/40 bg-[#D6AD60]/15 font-bold text-[#D6AD60]"
+          >
+            U
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <main class="px-4 pb-12 pt-28 md:px-8">
+        <div class="mb-8">
+          <p
+            class="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#D6AD60]"
+          >
+            Your personal collection
+          </p>
+
+          <h1 class="text-3xl font-bold tracking-tight md:text-4xl">
+            My Favorites
+          </h1>
+
+          <p class="mt-2 text-sm leading-6 text-[#A6AAB3]">
+            Keep the movies you love close at hand.
           </p>
         </div>
 
-        <div class="text-right">
-          <p id="favoriteCount" class="text-3xl font-bold text-blue-900">0</p>
-
-          <p class="text-sm text-slate-500">Movies</p>
-        </div>
-      </div>
-
-      <div
-        id="favoriteList"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-      ></div>
-
-      <div
-        id="emptyFavorites"
-        class="hidden bg-white rounded-2xl shadow-lg p-12 text-center"
-      >
-        <h2 class="text-2xl font-bold text-slate-800">
-          No Favorite Movies Yet
-        </h2>
-
-        <p class="text-slate-500 mt-2">Movies you favorite will appear here.</p>
-
-        <a
-          href="movies.html"
-          class="inline-block mt-6 bg-blue-900 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-800 transition"
+        <!-- Favorites Summary -->
+        <section
+          class="mb-8 flex items-center justify-between gap-4 rounded-2xl border border-[#343840] bg-[#1C2027] p-5 sm:p-6"
         >
-          Browse Movies
-        </a>
-      </div>
-    </main>
+          <div class="flex items-center gap-4">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#D6AD60]/10 text-[#D6AD60]"
+            >
+              <i data-lucide="heart" class="h-6 w-6"></i>
+            </div>
 
+            <div>
+              <h2 class="text-lg font-bold sm:text-xl">Favorite Movies</h2>
+              <p class="mt-1 text-sm text-[#A6AAB3]">
+                Your favorite movie collection
+              </p>
+            </div>
+          </div>
+
+          <div class="text-right">
+            <p
+              id="favoriteCount"
+              class="text-3xl font-bold tabular-nums text-[#D6AD60]"
+            >
+              0
+            </p>
+            <p class="text-xs text-[#A6AAB3]">Movies</p>
+          </div>
+        </section>
+
+        <!-- Favorite Movies -->
+        <section
+          id="favoriteList"
+          aria-label="Favorite movies"
+          class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        ></section>
+
+        <!-- Empty State -->
+        <section
+          id="emptyFavorites"
+          class="hidden rounded-2xl border border-[#343840] bg-[#1C2027] px-6 py-14 text-center"
+        >
+          <div
+            class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#D6AD60]/10 text-[#D6AD60]"
+          >
+            <i data-lucide="heart" class="h-8 w-8"></i>
+          </div>
+
+          <h2 class="text-2xl font-bold">No Favorite Movies Yet</h2>
+
+          <p class="mx-auto mt-3 max-w-md text-sm leading-6 text-[#A6AAB3]">
+            Movies you add to your favorites will appear here. Explore your
+            collection and choose the ones you love.
+          </p>
+
+          <a
+            href="movies.html"
+            class="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#D6AD60] px-6 py-3 text-sm font-semibold text-[#121418] transition hover:bg-[#E8C783]"
+          >
+            <i data-lucide="clapperboard" class="h-4 w-4"></i>
+            Browse Movies
+          </a>
+        </section>
+        <!-- Footer -->
+        <footer
+          class="mt-10 border-t border-[#343840] pt-5 text-xs text-[#777D87]"
+        >
+          <p>MOVIEDB <span class="mx-1">•</span> Your collection, organized.</p>
+        </footer>
+      </main>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
     <div
       id="logoutModal"
-      class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-100"
+      class="fixed inset-0 z-100 hidden items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
     >
-      <div class="bg-white rounded-3xl p-8 w-90 max-w-md shadow-2xl">
-        <h2 class="text-3xl font-bold text-slate-800 mb-3">Sign Out</h2>
+      <div
+        class="w-full max-w-md rounded-2xl border border-[#343840] bg-[#1C2027] p-6 shadow-2xl"
+      >
+        <div
+          class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D6AD60]/10 text-[#D6AD60]"
+        >
+          <i data-lucide="log-out" class="h-6 w-6"></i>
+        </div>
 
-        <p class="text-slate-600 mb-8">
+        <h2 class="mb-3 text-2xl font-bold">Sign Out</h2>
+
+        <p class="mb-8 text-sm leading-6 text-[#A6AAB3]">
           Are you sure you want to sign out of your account?
         </p>
 
-        <div class="flex justify-end gap-4">
+        <div class="flex justify-end gap-3">
           <button
             id="cancelLogout"
-            class="px-6 py-3 rounded-xl bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold cursor-pointer transition"
+            type="button"
+            class="rounded-xl border border-[#343840] px-5 py-3 font-semibold text-[#D9DCE2] transition hover:bg-[#343840]"
           >
             Cancel
           </button>
 
           <button
             id="confirmLogout"
-            class="px-6 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold cursor-pointer transition"
+            type="button"
+            class="rounded-xl bg-red-500 px-5 py-3 font-semibold text-white transition hover:bg-red-600"
           >
             Sign Out
           </button>
         </div>
       </div>
     </div>
-
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="/Script/favorites.js"></script>
   </body>
 </html>

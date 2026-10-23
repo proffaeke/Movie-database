@@ -20,10 +20,9 @@
         id="menuBtn"
         type="button"
         aria-label="Open navigation menu"
-        aria-controls="sidebar"
-        class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-[#F1F1F1] transition hover:bg-[#292D35] md:hidden"
+        class="rounded-lg p-2 text-[#D6AD60] transition hover:bg-[#343840] md:hidden"
       >
-        <i data-lucide="menu" class="h-5 w-5"></i>
+        <i data-lucide="menu" class="h-6 w-6"></i>
       </button>
 
       <a
@@ -43,7 +42,7 @@
 
         <div
           id="userAvatar"
-          class="flex h-9 w-9 items-center justify-center rounded-full border border-[#8D7547] bg-[#D6AD60] font-semibold text-[#121418]"
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-[#D6AD60]/40 bg-[#D6AD60]/15 font-bold text-[#D6AD60]"
         >
           U
         </div>
@@ -61,53 +60,53 @@
             MOVIE<span class="text-[#D6AD60]">DB</span>
           </a>
 
-          <p class="mt-1 text-xs tracking-wide text-[#777D87]">
-            YOUR MOVIE LIBRARY
+          <p class="mt-1 text-sm tracking-wide text-[#A6AAB3] md:block">
+            Your movie library
           </p>
         </div>
 
-        <nav class="mt-7 flex-1 space-y-2 px-3" aria-label="Main navigation">
+        <nav class="mt-8 flex-1 space-y-2 px-3" aria-label="Main navigation">
           <a
             href="dashboard.html"
             aria-current="page"
-            class="flex items-center gap-3 rounded-lg border border-[#51462F] bg-[#302B22] px-3 py-3 text-sm font-medium text-[#E6C987]"
+            class="flex items-center gap-3 rounded-xl border border-[#D6AD60]/20 bg-[#D6AD60]/10 px-4 py-3 font-semibold text-[#D6AD60]"
           >
-            <i data-lucide="layout-dashboard" class="h-4 w-4"></i>
+            <i data-lucide="layout-dashboard" class="h-5 w-5"></i>
             <span>Dashboard</span>
           </a>
 
           <a
             href="movies.html"
-            class="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-[#A6AAB3] transition hover:bg-[#292D35] hover:text-[#F1F1F1]"
+            class="flex items-center gap-3 rounded-xl px-4 py-3 text-[#A6AAB3] transition hover:bg-[#343840] hover:text-white"
           >
-            <i data-lucide="clapperboard" class="h-4 w-4"></i>
+            <i data-lucide="clapperboard" class="h-5 w-5"></i>
             <span>Movies</span>
           </a>
 
           <a
             href="favorites.html"
-            class="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-[#A6AAB3] transition hover:bg-[#292D35] hover:text-[#F1F1F1]"
+            class="flex items-center gap-3 rounded-xl px-4 py-3 text-[#A6AAB3] transition hover:bg-[#343840] hover:text-white"
           >
-            <i data-lucide="heart" class="h-4 w-4"></i>
+            <i data-lucide="heart" class="h-5 w-5"></i>
             <span>Favorites</span>
           </a>
 
           <a
             href="settings.html"
-            class="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-[#A6AAB3] transition hover:bg-[#292D35] hover:text-[#F1F1F1]"
+            class="flex items-center gap-3 rounded-xl px-4 py-3 text-[#A6AAB3] transition hover:bg-[#343840] hover:text-white"
           >
-            <i data-lucide="settings-2" class="h-4 w-4"></i>
+            <i data-lucide="settings" class="h-5 w-5"></i>
             <span>Settings</span>
           </a>
         </nav>
 
-        <div class="border-t border-[#343840] p-3">
+        <div class="p-3">
           <button
             id="logoutBtn"
             type="button"
-            class="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm text-[#A6AAB3] transition hover:bg-[#332526] hover:text-[#F0A0A0]"
+            class="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-[#A6AAB3] transition hover:bg-red-500/10 hover:text-red-400"
           >
-            <i data-lucide="log-out" class="h-4 w-4"></i>
+            <i data-lucide="log-out" class="h-5 w-5"></i>
             <span>Sign Out</span>
           </button>
         </div>
@@ -342,31 +341,28 @@
     <!-- Logout Confirmation Modal -->
     <div
       id="logoutModal"
-      class="fixed inset-0 z-100 hidden items-center justify-center bg-black/70 p-4"
+      class="fixed inset-0 z-100 hidden items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
     >
       <div
-        class="w-full max-w-md rounded-xl border border-[#343840] bg-[#1C2027] p-6 sm:p-8"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="logoutModalTitle"
+        class="w-full max-w-md rounded-2xl border border-[#343840] bg-[#1C2027] p-6 shadow-2xl"
       >
         <div
-          class="mb-5 flex h-11 w-11 items-center justify-center rounded-full border border-[#51462F] bg-[#302B22] text-[#D6AD60]"
+          class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D6AD60]/10 text-[#D6AD60]"
         >
-          <i data-lucide="log-out" class="h-5 w-5"></i>
+          <i data-lucide="log-out" class="h-6 w-6"></i>
         </div>
 
-        <h2 id="logoutModalTitle" class="text-2xl font-semibold">Sign out?</h2>
+        <h2 class="mb-3 text-2xl font-bold">Sign Out</h2>
 
-        <p class="mt-3 text-sm leading-6 text-[#A6AAB3]">
+        <p class="mb-8 text-sm leading-6 text-[#A6AAB3]">
           Are you sure you want to sign out of your account?
         </p>
 
-        <div class="mt-8 flex justify-end gap-3">
+        <div class="flex justify-end gap-3">
           <button
             id="cancelLogout"
             type="button"
-            class="rounded-lg border border-[#343840] px-5 py-2.5 text-sm font-medium text-[#D5D7DC] transition hover:bg-[#292D35]"
+            class="rounded-xl border border-[#343840] px-5 py-3 font-semibold text-[#D9DCE2] transition hover:bg-[#343840]"
           >
             Cancel
           </button>
@@ -374,7 +370,7 @@
           <button
             id="confirmLogout"
             type="button"
-            class="rounded-lg bg-[#D6AD60] px-5 py-2.5 text-sm font-semibold text-[#121418] transition hover:bg-[#E3BE76]"
+            class="rounded-xl bg-red-500 px-5 py-3 font-semibold text-white transition hover:bg-red-600"
           >
             Sign Out
           </button>
