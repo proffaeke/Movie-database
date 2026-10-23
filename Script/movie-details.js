@@ -32,7 +32,7 @@ const confirmLogout = document.getElementById("confirmLogout");
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser") || "null");
 
 if (!loggedInUser) {
-  window.location.href = "login.html";
+  window.location.href = "../index.html";
 }
 
 const username =

@@ -6,7 +6,7 @@
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
 if (!loggedInUser) {
-  window.location.href = "login.html";
+  window.location.href = "../index.html";
 } else {
   // ------------------------------
   // 2. Initialize Lucide Icons

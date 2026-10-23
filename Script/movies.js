@@ -6,7 +6,7 @@ const DEFAULT_POSTER = "/Image/default-movie.webp";
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
 if (!loggedInUser) {
-  window.location.href = "login.html";
+  window.location.href = "../index.html";
 } else {
   // ------------------------------
   // 1. Initialize Lucide Icons
